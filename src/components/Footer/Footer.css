@@ -1,0 +1,24 @@
+.footer {
+  width: calc(100% - 14.4%);
+  margin: 0 auto;
+  padding: 32px 0 26px;
+  display: flex;
+}
+
+.footer__copyright {
+  margin: 0;
+}
+.footer__navbar {
+  margin-left: auto;
+}
+
+.footer__link {
+  font-size: 18px;
+  line-height: 1.33;
+  color: #1A1B22;
+  text-decoration: none;
+}
+
+.footer__link:nth-of-type(2) {
+  margin-left: 42px;
+}
