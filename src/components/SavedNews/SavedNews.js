@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
+import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import './SavedNews.css';
 
 const SavedNews = ({ onRenderHome }) => {
   useEffect(() => {
@@ -6,7 +8,9 @@ const SavedNews = ({ onRenderHome }) => {
   });
 
   return(
-    <p>fgd</p>
+    <main className="saved-news">
+      <SavedNewsHeader/>
+    </main>
   );
 }
 

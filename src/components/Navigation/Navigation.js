@@ -1,10 +1,10 @@
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = ({ loggedIn, isHomeRendered, onLogout}) => {
   return(
     <nav className="navbar">
-      <NavLink className="navbar__link" activeClassName="navbar__link_active_home" to="/" exact={true}>Home</NavLink>
+      <NavLink className="navbar__link" activeClassName="navbar__link_active_home border" to="/" exact={true}>Home</NavLink>
       { loggedIn ?
         <>
           <NavLink className={`navbar__link navbar__link_type_saved ${isHomeRendered ? "navbar__link_inactive" : ''}`} activeClassName="navbar__link_active_saved" to="/saved-news" >Saved articles</NavLink>
@@ -22,5 +22,5 @@ const Navigation = ({ loggedIn, isHomeRendered, onLogout}) => {
     </nav>
   );
 }
-
+// ul li _><Link>
 export default Navigation;

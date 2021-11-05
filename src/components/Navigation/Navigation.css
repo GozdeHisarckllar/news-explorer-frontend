@@ -35,6 +35,16 @@
   position: absolute;
   top: 47px;
   left: -10px;
+  animation: border-line 1 .3s ease-in-out ;
+}
+
+@keyframes border-line {
+  from {
+    transform:scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .navbar__link_type_saved {
@@ -43,6 +53,11 @@
 
 .navbar__link_inactive {
   color: #B6BCBF;
+  transition: color .3s ease-in-out;
+}
+
+.navbar__link_inactive:hover {
+  color: #fff
 }
 
 .navbar__link_active_saved::after {
@@ -53,6 +68,7 @@
   position: absolute;
   top: 47px;
   left: -30px;
+  animation: border-line 1 .3s ease-in-out;
 }
 
 .navbar__button-login {

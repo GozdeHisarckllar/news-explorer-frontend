@@ -1,17 +1,19 @@
 // import logo from '../../logo.svg';
 import { useState } from 'react';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 // import { Element } from 'react-scroll';
 import Footer from '../Footer/Footer';
-
+import { articleCards } from '../../utils/placeholderData';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [isHomeRendered, setIsHomeRendered] = useState(true); /*for black color not for bottom border(navlink)*/
+  const [ newsCards, setNewsCards] = useState(articleCards);
+  const [ isSubmitted, setIsSubmitted] = useState(true);
 
   function handleLogout() {
     setLoggedIn(false);
@@ -28,6 +30,8 @@ function App() {
         <Route exact path="/">
           <Main
             onRenderHome={(boolean) => {setIsHomeRendered(boolean)}}
+            newsCards={newsCards}
+            onSubmitKeyword={isSubmitted}
           >
 
           </Main>
@@ -38,6 +42,9 @@ function App() {
           >
 
           </SavedNews>
+        </Route>
+        <Route path="*">
+          <Redirect to="/"/>
         </Route>
       </Switch>
       <Footer/>

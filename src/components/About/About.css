@@ -1,12 +1,17 @@
 .about {
+  width: calc(100% - 14.4%);
+  margin: 0 auto;
   padding: 80px 0 80px;
-  display: grid;
-  grid-template-areas: "img info";
-  grid-template-columns: 38% 48%;
-  grid-column-gap: 56px;
 }
 
 .about__article {
+  display: grid;
+  grid-template-areas: "img info";
+  grid-template-columns: 38% 48%; /*repeat(auto-fit, minmax(38%, 600px))*/
+  grid-column-gap: 56px;
+}
+
+.about__text {
   grid-area: info;
 }
 
