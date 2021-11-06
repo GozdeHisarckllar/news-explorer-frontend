@@ -4,7 +4,7 @@ import SearchForm from '../SearchForm/SearchForm';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import About from '../About/About';
 
-const Main = ({ onRenderHome, newsCards, onSubmitKeyword }) => {
+const Main = ({ onRenderHome, newsCards, onSubmitKeyword, isHomeRendered, loggedIn }) => {
   useEffect(() => {
     onRenderHome(true);
   });
@@ -21,7 +21,8 @@ const Main = ({ onRenderHome, newsCards, onSubmitKeyword }) => {
           { newsCards ? /* null undefined or length*/
            <>
             <h2 className="news-cards__title">Search Results</h2>
-            <NewsCardList newsCards={newsCards}/>
+            <NewsCardList newsCards={newsCards} isHomeRendered={isHomeRendered} loggedIn={loggedIn}/>
+            {newsCards.length > 3 && <button>See more</button>}
            </> :
            <div>
              <p>Nothing found</p>

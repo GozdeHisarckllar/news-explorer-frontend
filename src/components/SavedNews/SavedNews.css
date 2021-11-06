@@ -2,3 +2,12 @@
   width: calc(100% - 14.4%);
   margin: 0 auto;
 }*/
+
+.bookmarks {
+  background-color: #F5F6F7;
+}
+
+.bookmarks__container {
+  width: calc(100% - 14.4%);
+  margin: 0 auto;
+}

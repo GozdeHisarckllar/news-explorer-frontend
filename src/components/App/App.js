@@ -8,7 +8,7 @@ import SavedNews from '../SavedNews/SavedNews';
 // import { Element } from 'react-scroll';
 import Footer from '../Footer/Footer';
 import { articleCards } from '../../utils/placeholderData';
-
+// isHomeRendered --> context provider
 function App() {
   const [loggedIn, setLoggedIn] = useState(true);
   const [isHomeRendered, setIsHomeRendered] = useState(true); /*for black color not for bottom border(navlink)*/
@@ -32,12 +32,16 @@ function App() {
             onRenderHome={(boolean) => {setIsHomeRendered(boolean)}}
             newsCards={newsCards}
             onSubmitKeyword={isSubmitted}
+            isHomeRendered={isHomeRendered}
+            loggedIn = {loggedIn}
           >
 
           </Main>
         </Route>
         <Route path="/saved-news">
           <SavedNews
+          newsCards={newsCards}
+          isHomeRendered={isHomeRendered}
           onRenderHome={(boolean) => {setIsHomeRendered(boolean)}}
           >
 

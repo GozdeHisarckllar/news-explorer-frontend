@@ -1,8 +1,10 @@
 .news-card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));/*@media 200px tablet*/
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));/*400px*//*@media 200px tablet*/
   gap: 16px 16px; /*grid-gap */
-  margin: 64px 0 64px;
-  padding: 0;
+  /*margin: 64px 0 64px;
+  padding: 0;*/
+  padding: 64px 0 64px;
+  margin: 0;
   list-style: none;
 }

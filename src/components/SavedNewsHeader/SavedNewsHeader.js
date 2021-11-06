@@ -8,6 +8,6 @@ const SavedNewsHeader = () => {
       <p className="saved-info__req-info">By keywords:<span className="saved-info__keywords">{` ${'Nature'}, ${'Yellowstone'}, and ${2} other`}</span></p>
     </section>
   );
-}
+}//placeholderdata
 // const ... rest length -_>keywords state
 export default SavedNewsHeader;

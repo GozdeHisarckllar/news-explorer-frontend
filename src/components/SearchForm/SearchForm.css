@@ -22,6 +22,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  caret-color:  #2F71E5;
 }
 
 .search-form__input::placeholder {
