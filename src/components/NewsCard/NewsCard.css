@@ -8,7 +8,7 @@
 }
 
 .news-card:hover {
-  filter: drop-shadow(0 0 10px rgba(8, 29, 45, 0.2)) ;/*drop-shadow(0 0 58px rgba(8, 29, 45, 0.1));*/
+  filter: drop-shadow(0 0 10px rgba(8, 29, 45, .2)) ;/*drop-shadow(0 0 58px rgba(8, 29, 45, 0.1));*/
 }
 /*.news-card__link {
   text-decoration: none;

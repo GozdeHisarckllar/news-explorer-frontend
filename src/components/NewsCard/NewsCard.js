@@ -46,7 +46,7 @@ const NewsCard  = ({ newsCard, isHomeRendered, loggedIn }) => {
         </>
       }
       
-    </li>
+    </li>// div tooltip
   );
 }
 

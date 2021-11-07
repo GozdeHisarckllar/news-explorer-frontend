@@ -17,7 +17,7 @@ const Navigation = ({ loggedIn, isHomeRendered, onLogout}) => {
           </NavLink>
         </>
         :
-          <button className={`navbar__button-login ${isHomeRendered ? 'navbar__button-login_page_home' : ''}`} type="button" aria-label="Sign in">Sign in</button>/*del modifier*/
+          <button className={`navbar__button-login ${isHomeRendered ? 'navbar__button-login_page_home' : ''}`} type="button" aria-label="Sign in">Sign in</button>/*del modifier*//*button btn*/
       }
     </nav>
   );
