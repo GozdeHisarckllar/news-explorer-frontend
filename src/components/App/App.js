@@ -7,10 +7,10 @@ import Main from '../Main/Main';
 import SavedNews from '../SavedNews/SavedNews';
 // import { Element } from 'react-scroll';
 import Footer from '../Footer/Footer';
-import { articleCards } from '../../utils/placeholderData';
-// isHomeRendered --> context provider //check  section two headings
-function App() {
-  const [loggedIn, setLoggedIn] = useState(true);
+import { articleCards } from '../../utils/placeholderData';/*link card img*/
+// isHomeRendered --> context provider //check  section two headings //// infotooltip for auth
+function App() {// 1.33 -> 1.3 // 696px mobile 600px 706px footer align itemc X //padding top bottom
+  const [loggedIn, setLoggedIn] = useState(true);// 696************************
   const [isHomeRendered, setIsHomeRendered] = useState(true); /*for black color not for bottom border(navlink)*/
   const [ newsCards, setNewsCards] = useState(articleCards);
   const [ isSubmitted, setIsSubmitted] = useState(true);

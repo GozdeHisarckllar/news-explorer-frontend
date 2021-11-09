@@ -46,3 +46,9 @@
   text-align: center;
   color: #B6BCBF;
 }
+
+@media screen and (max-width: 768px) {
+  .preloader {
+    padding: 40px 0;
+  }
+}

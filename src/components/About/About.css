@@ -17,6 +17,7 @@
 
 .about__avatar {
   grid-area: img;
+  align-self: center;
   display: block;
   max-width: 464px;
   width: 100%;
@@ -34,9 +35,51 @@
 .about__info {
   margin: 24px 0 0;
   font-size: 18px;
-  line-height: 1.33;
+  line-height: 1.3;
 }
 
+@media screen and (max-width: 768px) {
+  .about {
+    width: calc(100% - 80px);
+    padding: 40px 0;
+  }
+
+  .about__article {
+    grid-template-columns: 34% 61%;
+    grid-column-gap: 32px;
+  }
+
+  .about__title {
+    margin: 0;
+    font-size: 30px;
+    line-height: 1.3;
+  }
+
+  .about__info {
+    margin-top: 16px;
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .about {
+    width: calc(100% - 32px);
+    padding: 32px 0;
+  }
+
+  .about__article {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about__avatar {
+    max-width: 272px;
+  }
+
+  .about__text {
+    margin-top: 24px;
+  }
+}
 /*.about__article {
   display: grid;
   grid-template-areas: "img title"

@@ -61,6 +61,7 @@
   font-size: 26px;
   line-height: 1.15;
   color: #1A1B22;
+  flex-grow: .4;/****************/
 }
 
 .news-card__text {
@@ -84,7 +85,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;
-  letter-spacing: 0.4px;
+  letter-spacing: .4px;
   text-transform: uppercase;
   color: #B6BCBF;
 }
@@ -104,7 +105,7 @@
   border: none;
   outline: none;
   cursor: pointer;
-  transition: all .3s ease-in-out;
+  transition: background-image .3s ease-in-out;
   /*box-shadow: 0 0 10px rgba(8, 29, 45, 0.2);*/
 }
 
@@ -120,13 +121,13 @@
   background-image: url('../../images/bookmark-saved.svg');
 }
 
-.news-card__notice {
+.news-card__tooltip {
   position: absolute;
   top: 24px;
   right: 69px;
   display: inline-block;
   margin: 0;
-  padding: 13px 31px 13px;
+  padding: 13px 31px;
   background-color: #fff;
   border-radius: 10px;
   font-weight: 500;
@@ -138,7 +139,7 @@
   transition: all .3s ease-in-out;
 }
 
-.news-card__btn:hover + .news-card__notice_visible {
+.news-card__btn:hover + .news-card__tooltip_visible {
   visibility: visible;
   opacity: 1;
 }
@@ -163,4 +164,35 @@
 
 .news-card__btn_type_remove:hover {
   background-image: url('../../images/icon-remove-onhover.svg');
+}
+
+@media screen and (max-width: 850px) {
+  .news-card__tooltip {
+    padding: 13px 15px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .news-card__title {
+    font-size: 22px;
+    line-height: 1.1;
+  }
+  .news-card__btn {
+    top: 8px;
+    right: 8px;
+  }
+
+  .news-card__tooltip {
+    top: 8px;
+    right: 54px;
+  }
+
+  .news-card__keyword {
+    top: 8px;
+    left: 8px;
+  }
+
+  .news-card__description {
+    padding: 16px;
+  }
 }

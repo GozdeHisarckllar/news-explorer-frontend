@@ -36,17 +36,17 @@ const NewsCard  = ({ newsCard, isHomeRendered, loggedIn }) => {
         isHomeRendered ?
         <>
           <button className={`news-card__btn news-card__btn_type_save ${isSaved ? 'news-card__btn_saved':''}`} onClick={handleSave} disabled={loggedIn ? false : true} type="button" aria-label="create a bookmark"></button>
-          <p className={`news-card__notice ${!loggedIn ? 'news-card__notice_visible':'' }`}>Sign in to save articles</p>
+          <p className={`news-card__tooltip ${!loggedIn ? 'news-card__tooltip_visible':'' }`}>Sign in to save articles</p>
         </>
         :
         <>
           <p className="news-card__keyword">{newsCard.keyword}</p>
-          <button className="news-card__btn news-card__btn_type_remove" type="button" aria-label="remove this saved article"></button>
-          <p className="news-card__notice news-card__notice_visible">Remove from saved</p>
+          <button className="news-card__btn news-card__btn_type_remove" type="button" aria-label="remove the bookmark"></button>
+          <p className="news-card__tooltip news-card__tooltip_visible">Remove from saved</p>
         </>
       }
       
-    </li>// div tooltip
+    </li>
   );
 }
 

@@ -10,7 +10,7 @@
   font-size: 16px;
   line-height: 1.37;
   color: #B6BCBF;
-
+  text-align: center;
 }
 
 .footer__navbar {
@@ -22,6 +22,10 @@
   display: flex;
   align-items: center;
   list-style: none;
+}
+
+.footer__list-item {
+  text-align: center;
 }
 
 .footer__list-item:nth-of-type(2) {
@@ -66,4 +70,30 @@
 
 .footer__link-icon:hover {
   opacity: .6;
+}
+
+@media screen and (max-width: 822px) {
+  .footer__copyright {
+    font-size: 14px;
+  }
+
+  .footer__link {
+    font-size: 16px;
+  }
+
+  .footer__list-item:nth-of-type(2) {
+    margin:  0 32px 0 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .footer {
+    padding: 20px 0 22px;
+  }
 }

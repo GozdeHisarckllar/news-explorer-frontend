@@ -32,3 +32,21 @@
 .saved-info__keywords {
   font-weight: 700;
 }
+
+@media screen and (max-width: 768px) {
+  .saved-info {
+    padding: 24px 0 32px;
+  }
+
+  .saved-info__title {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .saved-info__count {
+    max-width: 336px;
+    font-size: 30px;
+    line-height: 1.1;
+    margin-top: 16px;
+  }
+}

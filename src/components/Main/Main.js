@@ -36,9 +36,9 @@ const Main = ({ onRenderHome, newsCards, onSubmitKeyword, isHomeRendered, logged
         </div>
       </section>
       <About/>
-    </main>
+   </main>
   );// del padding bottom news-cards section 
-} // ***********  state && <preloader/>
+} // ***********  state && <preloader/> // results block
 /*{newsCards.length > 3 ?
             <>
             <NewsCardList newsCards={newsCards.slice(0, 3)} isHomeRendered={isHomeRendered} loggedIn={loggedIn}/>

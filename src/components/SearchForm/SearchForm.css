@@ -18,7 +18,7 @@
   box-sizing: border-box;
   border-radius: 100px;
   text-indent: 24px;
-  padding-right: 185px;
+  padding: 0 185px 0 0;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -53,7 +53,7 @@
   bottom: 0;
   right: 0;
   cursor: pointer;
-  transition: all .3s ease-in-out;
+  transition: background-color .3s ease-in-out;
 }
 
 .search-form__button:hover {
@@ -62,4 +62,34 @@
 
 .search-form__button:active {
   background-color: #2A65CC;
+}
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    margin-top: 48px;
+  }
+  .search-form__input {
+    padding-right: 170px;
+    height: 55px;
+  }
+
+  .search-form__button {
+    padding: 16px 52px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .search-form {
+    display: block;
+    margin-top: 122px;
+  }
+  .search-form__input {
+    padding-right: 24px;
+  }
+  .search-form__button {
+    position: relative;
+    width: 100%;
+    margin-top: 16px;
+  }
+  
 }

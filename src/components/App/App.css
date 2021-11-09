@@ -17,3 +17,21 @@
   background-size: 1440px;
   background-repeat: no-repeat;
 } /*height 570 -_>400*/
+
+@media screen and (max-width: 768px) {
+  .page__container_withBackground {
+    background-size: 768px;
+    background-image: url('../../images/main-background-tablet-georgia-de-lotz-min.jpg');
+  }
+}
+
+@media screen and (max-width: 620px) {/*380*/
+  .page__container_withBackground {
+    background-size: contain;/*320px*/
+    background-image: url('../../images/main-background-mobile-georgia-de-lotz-min.jpg');
+  }
+}
+
+/*   page__container  overflow: hidden;
+    height: 100vh
+;*/
