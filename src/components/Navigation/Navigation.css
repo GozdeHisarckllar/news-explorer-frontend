@@ -195,6 +195,8 @@
     width: 152px;
     padding: 8px;
     margin-left: 24px;
+    font-size: 16px;
+    line-height: 1.5;
   }
 
   .navbar__link_type_saved {

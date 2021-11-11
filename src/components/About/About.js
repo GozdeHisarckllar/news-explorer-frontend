@@ -8,11 +8,14 @@ const About = () => {
         <img className="about__avatar" src={author} alt="author avatar"/>
         <div className="about__text">
           <h2 className="about__title">About the author</h2>
-          <p className="about__info about__info_type_intro">This block describes the project author. 
-            Here you should indicate your name, what you do, and which development technologies you know.
+          <p className="about__info about__info_type_intro">Welcome to News Explorer app!. 
+            I'm Gözde Hisarcıklılar and the developer of this project. As in the case of this project, 
+            I enjoy developing apps using Javacript, React, Node.js and version control with Git.
           </p>
           <p className="about__info about__info_type_main">
-          You can also talk about your experience with Practicum, what you learned there, and how you can help potential customers.
+            Through the comprehensive projects and review processes, Practicum by Yandex has introduced me a deeper 
+            insight into efficiency and best practices. Since I like to try coming up with solutions and testing their results, 
+            I'm glad to have opportunities to face new challenges and new approaches in web development. 
           </p>
         </div>
       </article>

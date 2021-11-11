@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
-const Navigation = ({ loggedIn, isHomeRendered, onLogout}) => {
+const Navigation = ({ loggedIn, isHomeRendered, onLogout, onSignInClick}) => {
   return(
     <nav className="navbar">
       <NavLink className="navbar__link" activeClassName="navbar__link_active_home border" to="/" exact={true}>Home</NavLink>
@@ -17,7 +17,7 @@ const Navigation = ({ loggedIn, isHomeRendered, onLogout}) => {
           </NavLink>
         </>
         :
-          <button className={`navbar__button-login ${isHomeRendered ? 'navbar__button-login_page_home' : ''}`} type="button" aria-label="Sign in">Sign in</button>/*del modifier*//*button btn*/
+          <button className={`navbar__button-login ${isHomeRendered ? 'navbar__button-login_page_home' : ''}`} onClick={onSignInClick} type="button" aria-label="Sign in">Sign in</button>/*del modifier*//*button btn*/
       }
     </nav>
   );

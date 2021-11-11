@@ -196,3 +196,9 @@
     padding: 16px;
   }
 }
+
+@media screen and (max-width: 620px) {
+  .news-card__text {
+    -webkit-line-clamp: 3;
+  }
+}

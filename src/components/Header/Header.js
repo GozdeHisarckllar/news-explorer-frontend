@@ -1,19 +1,15 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
 import Navigation from '../Navigation/Navigation';
+import NavMobile from '../NavMobile/NavMobile';
 import './Header.css';
 
-const Header = ({ loggedIn, isHomeRendered, onLogout }) => {
+const Header = ({ loggedIn, isHomeRendered, onLogout, isHeaderExpanded, onExpandHeader, 
+  onSignInClick, onRemoveHeaderMobile, isLoginPopupOpen, isRegisterPopupOpen, isInfoTooltipOpen }) => {
   /* const linkModifier = isHomeRendered ? "header__link_type_home" : ''; */
-  const [isHeaderExpanded, setIsHeaderExpanded] = useState(false);
-
- function handleExpandHeader() {/*useEffect addEventListener*/
-  setIsHeaderExpanded(!isHeaderExpanded); /*close signin popup as well or popup X appear disappear*/
- }
 
   return (
-    <header className={`header ${!isHomeRendered ? 'header_border_dark':''} ${isHeaderExpanded ? 'header__expanded':''}`}>
-      <div className="header__container">
+    <header className={`header ${!isHomeRendered ? 'header_border_dark':''} ${isHeaderExpanded && isHomeRendered ? 'header_dark':''}`}>
+      <div className={`header__container ${isLoginPopupOpen||isRegisterPopupOpen||isInfoTooltipOpen ? 'header__container_mobile':''}`}>
         <NavLink className="header__link header__link_type_logo" 
           activeClassName="header__link_active" 
           to='/' 
@@ -25,16 +21,24 @@ const Header = ({ loggedIn, isHomeRendered, onLogout }) => {
           loggedIn={loggedIn}
           isHomeRendered={isHomeRendered}
           onLogout={onLogout}
+          onSignInClick={onSignInClick}
         />
-        <button className="header__expand-btn" onClick={handleExpandHeader}type="button" aria-label="expand navigation">
-        <svg className="header__expand-icon">
-          <title>navigation button icon</title>
-          <rect x="4" y="8" className={`header__expand-rect ${isHeaderExpanded? 'header__expand-rect_top':''}`} />
-          <rect x="4" y="14" className={`header__expand-rect ${isHeaderExpanded? 'header__expand-rect_bottom':''}`}/>
-        </svg>
-          
+        <button className="header__expand-btn" onClick={onExpandHeader} type="button" aria-label="expand navigation bar">
+          <svg className="header__expand-icon">
+            <title>Navigation button icon</title>
+            <rect x="4" y="8" className={`header__expand-rect ${isHeaderExpanded? 'header__expand-rect_top':''} ${isHomeRendered ? 'header__expand-rect_light':''}`}/>
+            <rect x="4" y="14" className={`header__expand-rect ${isHeaderExpanded? 'header__expand-rect_bottom':''} ${isHomeRendered ? 'header__expand-rect_light':''}`}/>
+          </svg>
         </button>
       </div>
+      <NavMobile 
+        loggedIn={loggedIn}
+        isHomeRendered={isHomeRendered}
+        isHeaderExpanded={isHeaderExpanded}
+        onLogout={onLogout}
+        onSignInClick={onSignInClick}
+        onRemoveHeaderMobile={onRemoveHeaderMobile}
+      />
     </header>
   );
 } 

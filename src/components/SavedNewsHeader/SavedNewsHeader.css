@@ -35,6 +35,7 @@
 
 @media screen and (max-width: 768px) {
   .saved-info {
+    width: calc(100% - 80px);
     padding: 24px 0 32px;
   }
 
@@ -48,5 +49,12 @@
     font-size: 30px;
     line-height: 1.1;
     margin-top: 16px;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .saved-info {
+    width: calc(100% - 32px);
+    padding-top: 8px;
   }
 }

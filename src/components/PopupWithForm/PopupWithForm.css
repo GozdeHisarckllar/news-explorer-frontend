@@ -1,0 +1,129 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 0, .5);
+  opacity: 0;
+  transition: all .3s ease-in-out;
+}
+
+.modal_opened {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal__container {
+  position: relative;
+  max-width: 430px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__close-btn {
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  width: 40px;
+  height: 40px;
+  background-image: url('../../images/icon-close.svg');
+  background-size: cover;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.form {
+  width: 100%;
+  background: #FFF;
+  filter: drop-shadow(0 0 25px rgba(0, 0, 0, .15)) ;
+  border-radius: 16px;
+}
+/*form margin-top: 112px
+;
+    height: 100vh
+
+    modal background transparent
+;*/
+.form__input-container {
+  position: relative;
+  max-width: calc(100% - 72px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 34px auto 0;
+  padding: 0;
+  border:none;
+  box-sizing: border-box;
+}
+
+.form__caption {
+  margin-bottom: 22px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.17;
+}
+
+.form__submit-btn {
+  width: 100%;
+  margin: 8px 0 16px;
+  padding: 20px 0;
+  background-color: #2F71E5;
+  box-shadow: 0px 5px 15px rgba(14, 26, 57, .2);
+  border: none;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.form__submit-btn_disabled {
+  background: #E6E8EB;
+  box-shadow: none;
+  color: #B6BCBF;
+}
+
+.form__redirect {
+  max-width: 226px;
+  margin: 0 auto 28px;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+  color: #000;
+}
+
+.form__redirect-label {
+  color: #2F71E5;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+  .modal {
+    background-color: transparent;
+    margin-top: 56px;
+  }
+
+  .modal__close-btn {
+    width: 24px;
+    height: 24px;
+    top: -40px;
+    right: 16px;
+  }
+  .form {
+    height: 100vh;
+  }  
+}

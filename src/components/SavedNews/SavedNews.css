@@ -11,3 +11,15 @@
   width: calc(100% - 14.4%);
   margin: 0 auto;
 }
+
+@media screen and (max-width: 768px) {
+  .bookmarks__container {
+    width: calc(100% - 80px);
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .bookmarks__container {
+    width: calc(100% - 32px);
+  }
+}

@@ -18,6 +18,12 @@
   background-repeat: no-repeat;
 } /*height 570 -_>400*/
 
+
+.page__container_noscroll_desktop {
+  overflow-y: hidden;
+  height: 100vh;
+}
+
 @media screen and (max-width: 768px) {
   .page__container_withBackground {
     background-size: 768px;
@@ -30,8 +36,23 @@
     background-size: contain;/*320px*/
     background-image: url('../../images/main-background-mobile-georgia-de-lotz-min.jpg');
   }
+
+  .page__container_noscroll_desktop {
+    background-size: 100%;
+    overflow-y: hidden;
+    height: 100vh;
+  }
 }
 
-/*   page__container  overflow: hidden;
-    height: 100vh
-;*/
+.page__container_noscroll_mobile {
+  background-size: 100%;
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+/*
+.page__container_noscroll_desktop {
+  overflow-y: hidden;
+  height: 100vh;
+}*/
+
