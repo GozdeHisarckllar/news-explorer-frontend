@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 32px 0 26px;
   display: flex;
+  align-items: center;
 }
 
 .footer__copyright {
@@ -15,6 +16,7 @@
 
 .footer__navbar {
   margin-left: auto;
+  display: flex;
 }
 
 .footer__links {
@@ -25,17 +27,18 @@
   list-style: none;
 }
 
+.footer__links_no-icon {
+  margin-right: 42px;
+}
+
 .footer__list-item {
   text-align: center;
 }
 
-.footer__list-item:nth-of-type(2) {
-  margin:  0 48px 0 36px;
-}
-
-.footer__list-item:last-child {
+.footer__list-item:nth-of-type(2n) {
   margin-left: 28px;
 }
+
 .footer__link {
   font-size: 18px;
   line-height: 1.33;
@@ -44,21 +47,12 @@
   transition: color .3s ease-in-out;
 }
 
-/*.footer__link:nth-of-type(2) {
-  margin:  0 48px 0 36px;
-}*/
- /* group-flex --> width space between*//* ul */
 .footer__link-icon {
   display: block;
   width: 24px;
   height: 24px;
   transition: opacity .3s ease-in-out;
 }
-
-
-/*.footer__link-icon:last-child {
-  margin-left: 28px;
-}*/
 
 .footer__icon {
   display: inline-block;
@@ -73,32 +67,39 @@
   opacity: .6;
 }
 
-@media screen and (max-width: 822px) {
-  .footer__copyright {
-    font-size: 14px;
-  }
-
-  .footer__link {
-    font-size: 16px;
-  }
-
-  .footer__list-item:nth-of-type(2) {
-    margin:  0 32px 0 24px;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .footer {
     width: calc(100% - 80px);
     padding: 24px 0 18px;
   }
+
+  .footer__links_no-icon {
+    margin-right: 26px;
+  }
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 720px) {
   .footer {
     width: calc((100% - 32px));
     flex-direction: column;
     padding: 20px 0 22px;
+  }
+
+  .footer__navbar {
+    width: -webkit-fill-available;
+    margin-left: 0;
+    margin-bottom: 40px;
+    justify-content: space-between;
+  }
+
+  .footer__links {
+    align-items: flex-start;
+  }
+
+  .footer__links_no-icon {
+    margin-right: 18px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .footer__link {
@@ -110,7 +111,15 @@
     font-size: 16px;
   }
 
-  .footer__list-item:nth-of-type(2) {
-    margin:  0;
+  .footer__list-item:nth-of-type(2n) {
+     margin-left: 0;
+  }
+
+  .footer__list-item_path_home {
+    margin-bottom: 22px;
+  }
+
+  .footer__list-item_path_github {
+    margin-right: 28px;
   }
 }

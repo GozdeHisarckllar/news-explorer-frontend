@@ -18,13 +18,28 @@
   color: #000;
 }
 
-.info-tooltip__redirect-label {
+.info-tooltip__redirect-btn {
   display: inline-block;
   margin: 14px 0 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
   font-family: 'Inter';
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
   color: #2F71E5;
   cursor: pointer;
+  transition: opacity .3s ease-in-out;
+}
+
+.info-tooltip__redirect-btn:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 620px) {
+  .info-tooltip {
+    height: 100vh;
+    padding: 22px 18px 0; 
+  }
 }

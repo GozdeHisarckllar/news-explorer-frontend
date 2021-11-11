@@ -25,7 +25,7 @@
 }
 
 .form__input::placeholder {
-  opacity: .5; /*****.4*/
+  opacity: .4;
 }
 
 .form__input:focus-visible {
@@ -49,4 +49,10 @@
 .form__input-error_visible {
   visibility: visible;
   opacity: 1;
+}
+
+@media screen and (max-width: 620px) {
+  .form__label:last-of-type {
+    margin-bottom: 15px;
+  }
 }

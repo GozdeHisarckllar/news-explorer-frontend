@@ -5,7 +5,6 @@ import './Header.css';
 
 const Header = ({ loggedIn, isHomeRendered, onLogout, isHeaderExpanded, onExpandHeader, 
   onSignInClick, onRemoveHeaderMobile, isLoginPopupOpen, isRegisterPopupOpen, isInfoTooltipOpen }) => {
-  /* const linkModifier = isHomeRendered ? "header__link_type_home" : ''; */
 
   return (
     <header className={`header ${!isHomeRendered ? 'header_border_dark':''} ${isHeaderExpanded && isHomeRendered ? 'header_dark':''}`}>
@@ -42,6 +41,5 @@ const Header = ({ loggedIn, isHomeRendered, onLogout, isHeaderExpanded, onExpand
     </header>
   );
 } 
-/*<div className="header__expand-btn-rect"></div>
-          <div className=""></div>*/
+
 export default Header;

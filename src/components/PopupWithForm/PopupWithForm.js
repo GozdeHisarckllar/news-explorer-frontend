@@ -8,11 +8,11 @@ const PopupWithForm = (props) => {
           <fieldset className="form__input-container">
             <legend className="form__caption">{props.title}</legend>
             {props.children}
-            <button type="submit" className="form__submit-btn form__submit-btn_disabled">{props.buttonLabel}</button>
+            <button type="submit" disabled={false} className="form__submit-btn">{props.buttonLabel}</button>
           </fieldset>
-          <p className="form__redirect">or <span className="form__redirect-label" onClick={props.onRedirect}>{props.linkLabel}</span></p>
+          <button type="button" className="form__redirect-btn" aria-label="redirect to authorize">or <span className="form__redirect-label" onClick={props.onRedirect}>{props.linkLabel}</span></button>
         </form>
-        <button onClick={props.onClose} className="modal__close-btn" aria-label="Close" type="button"></button>
+        <button onClick={props.onClose} className="modal__close-btn" aria-label="close" type="button"></button>
       </div>
     </div>
   );

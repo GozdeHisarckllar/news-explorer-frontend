@@ -23,7 +23,7 @@ const RegisterPopup = ({ isOpen, onClose, onRedirect }) => {
           placeholder="Enter password" minLength="6" maxLength="30" required/>
       </label>
       <label className="form__label form__label_el_username" htmlFor="signup-username">
-        Password
+        Username
         <input type="text" className="form__input form__input_type_username" id="signup-username" name="username" 
           placeholder="Enter your username" required/>
       </label>

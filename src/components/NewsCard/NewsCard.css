@@ -3,17 +3,12 @@
   background-color: #fff;
   border-radius: 16px;
   transition: all .2s linear;
-  /*filter: drop-shadow(2px 2px 4px rgb(84, 84, 102));*/
-  /*height: fit-content;*/
 }
 
 .news-card:hover {
-  filter: drop-shadow(0 0 10px rgba(8, 29, 45, .2)) ;/*drop-shadow(0 0 58px rgba(8, 29, 45, 0.1));*/
+  filter: drop-shadow(0 0 10px rgba(8, 29, 45, .2));
 }
-/*.news-card__link {
-  text-decoration: none;
-}
-*/
+
 .news-card__article {
   display: flex;
   flex-direction: column;
@@ -28,7 +23,7 @@
 }
 
 .news-card__description {
-  height: -webkit-fill-available;/**/
+  height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -46,7 +41,6 @@
 }
 
 .news-card__text-container {
-  /*margin-top: 12px;*/
   height: -webkit-fill-available;
   display: flex;
   flex-direction: column;
@@ -54,18 +48,16 @@
 
 }
 .news-card__title {
-  /*margin: 12px 0 0;*/
   margin: 0;
   font-family: 'Roboto Slab';
   font-weight: 400;
   font-size: 26px;
   line-height: 1.15;
   color: #1A1B22;
-  flex-grow: .4;/****************/
+  flex-grow: .4;
 }
 
 .news-card__text {
-  /*margin: 16px 0 0;*/
   margin: 0;
   margin: 20px 0 20px;
   font-family: 'Roboto';
@@ -79,7 +71,6 @@
 }
 
 .news-card__source {
-  /*margin: 18px 0 0;*/
   margin: 0;
   font-family: 'Roboto Slab';
   font-weight: 700;
@@ -90,14 +81,13 @@
   color: #B6BCBF;
 }
 
-.news-card__btn {/*.news-card__save-btn news-card__save-btn_saved*/
+.news-card__btn {
   position: absolute;
   top: 24px;
   right: 24px;
   width: 40px;
   height: 40px;
   padding: 0;
-  /*background-image: url('../../images/bookmark-icon.svg');*/
   background-repeat: no-repeat;
   background-color: #fff;
   background-position: center;
@@ -106,7 +96,6 @@
   outline: none;
   cursor: pointer;
   transition: background-image .3s ease-in-out;
-  /*box-shadow: 0 0 10px rgba(8, 29, 45, 0.2);*/
 }
 
 .news-card__btn_type_save {
@@ -177,6 +166,7 @@
     font-size: 22px;
     line-height: 1.1;
   }
+  
   .news-card__btn {
     top: 8px;
     right: 8px;

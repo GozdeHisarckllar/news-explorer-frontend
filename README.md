@@ -1,5 +1,6 @@
 # news-explorer-frontend
 
+* The frontend code and the user interface logic with React.js for the News Explorer project
 
 # Getting Started with Create React App
 

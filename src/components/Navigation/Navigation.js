@@ -7,8 +7,11 @@ const Navigation = ({ loggedIn, isHomeRendered, onLogout, onSignInClick}) => {
       <NavLink className="navbar__link" activeClassName="navbar__link_active_home border" to="/" exact={true}>Home</NavLink>
       { loggedIn ?
         <>
-          <NavLink className={`navbar__link navbar__link_type_saved ${isHomeRendered ? "navbar__link_inactive" : ''}`} activeClassName="navbar__link_active_saved" to="/saved-news" >Saved articles</NavLink>
-          <NavLink className={`navbar__link navbar__link_type_logout ${isHomeRendered ? "navbar__link_page_home" : 'navbar__link_page_saved'}`} /*Link-Button history push*/
+          <NavLink className={`navbar__link navbar__link_type_saved ${isHomeRendered ? "navbar__link_inactive" : ''}`} 
+            activeClassName="navbar__link_active_saved" to="/saved-news" >
+              Saved articles
+          </NavLink>
+          <NavLink className={`navbar__link navbar__link_type_logout ${isHomeRendered ? "navbar__link_page_home" : 'navbar__link_page_saved'}`}
             onClick={onLogout}
             to="/"
           >
@@ -17,10 +20,13 @@ const Navigation = ({ loggedIn, isHomeRendered, onLogout, onSignInClick}) => {
           </NavLink>
         </>
         :
-          <button className={`navbar__button-login ${isHomeRendered ? 'navbar__button-login_page_home' : ''}`} onClick={onSignInClick} type="button" aria-label="Sign in">Sign in</button>/*del modifier*//*button btn*/
+          <button className={`navbar__button-login ${isHomeRendered ? 'navbar__button-login_page_home' : ''}`} onClick={onSignInClick} 
+            type="button" aria-label="Sign in">
+             Sign in
+          </button>
       }
     </nav>
   );
 }
-// ul li _><Link>
+
 export default Navigation;

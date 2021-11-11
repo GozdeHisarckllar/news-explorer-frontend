@@ -1,9 +1,7 @@
 .news-card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%/2), 1fr));/*350*//*400px*//*@media 200px tablet*//*minmax(min(354px, 100%/4), 1fr)*/
-  gap: 16px 16px; /*grid-gap */
-  /*margin: 64px 0 64px;
-  padding: 0;*/
+  grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%/2), 1fr));
+  gap: 16px 16px;
   padding: 64px 0 64px;
   margin: 0;
   list-style: none;
@@ -22,9 +20,3 @@
     padding: 24px 0 12px;
   }
 }
-/*
-@media screen and (max-width: 768px) {
-  .news-card-list {
-    grid-template-columns: repeat(auto-fit, minmax(222px, 1fr));
-  }
-}*/

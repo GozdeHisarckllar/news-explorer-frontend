@@ -22,6 +22,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  transition: border-color .2s ease-in-out;
   caret-color:  #2F71E5;
 }
 
@@ -32,11 +33,11 @@
   line-height: 1.37;
   color: #B6BCBF;
 }
-/*
+
 .search-form__input:focus {
-  border: 2px solid #2F71E5;
+  border-color: #2F71E5;
 }
-*/
+
 .search-form__button {
   position: absolute;
   padding: 20px 56px 21px;

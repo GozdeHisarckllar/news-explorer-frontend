@@ -6,7 +6,12 @@ const NewsCardList = ({ newsCards, isHomeRendered, loggedIn }) => {
   return(
     <ul className="news-card-list">
       {  newsCards.map((newsCard, i) => (
-        <NewsCard newsCard={newsCard} key={i} isHomeRendered={isHomeRendered} loggedIn={loggedIn}/>
+        <NewsCard 
+          newsCard={newsCard} 
+          key={i} 
+          isHomeRendered={isHomeRendered} 
+          loggedIn={loggedIn}
+        />
         ))
       }
     </ul>

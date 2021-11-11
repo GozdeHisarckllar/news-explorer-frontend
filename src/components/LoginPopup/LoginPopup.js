@@ -29,12 +29,3 @@ const LoginPopup = ({ isOpen, onClose, onRedirect }) => {
 }
 
 export default LoginPopup;
-
-/*label="Log in"
-        values={values}
-        errors={errors}
-        onSubmit={handleSubmit}
-        onChange={handleChange}
-        isFormValid={isFormValid}
-        linkLabel="Not a member yet? Sign up here!"
-        linkPath="/signup"*/

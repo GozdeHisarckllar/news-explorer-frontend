@@ -10,7 +10,10 @@ const NavMobile = ({ loggedIn, isHomeRendered, isHeaderExpanded, onLogout, onSig
         { loggedIn ?
         <div className='nav-mobile__flex-container'>
           <Link className={`nav-mobile__link ${isHomeRendered ? 'nav-mobile__link_light':''}`} to="/saved-news" >Saved articles</Link>
-          <Link className={`nav-mobile__link nav-mobile__link_type_logout ${isHomeRendered ? 'nav-mobile__link_decor_light':''}`} onClick={onLogout} to="/">
+          <Link className={`nav-mobile__link nav-mobile__link_type_logout ${isHomeRendered ? 'nav-mobile__link_decor_light':''}`} 
+            onClick={onLogout} 
+            to="/"
+          >
             <p className="nav-mobile__username">Elise</p>
             <div className={`nav-mobile__icon-logout ${isHomeRendered ? 'nav-mobile__icon-logout_light':''}`}></div>
           </Link>
