@@ -1,0 +1,51 @@
+.preloader {
+  padding: 80px 0 80px;
+  display: grid;
+  place-items: center;
+}
+
+.preloader__circle {
+	display: block;
+  position: relative;
+	width: 74px;
+	height: 74px;
+	margin: 0 auto;
+	animation: spin .75s infinite linear;
+}
+
+.preloader__circle::before {
+  content: "";
+  padding: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background-image: conic-gradient(#D1D2D6, #1A1B22);
+  mask: linear-gradient(#fff 0 0),
+        linear-gradient(#fff 0 0) content-box;
+  mask-composite: exclude;
+  
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.preloader__text {
+  display: inline-block;
+  margin: 24px auto 0;
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: center;
+  color: #B6BCBF;
+}
+
+@media screen and (max-width: 768px) {
+  .preloader {
+    padding: 40px 0;
+  }
+}

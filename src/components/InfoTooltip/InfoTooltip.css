@@ -1,0 +1,45 @@
+.info-tooltip {
+  width: 100%;
+  padding: 43px 36px 51px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  background: #FFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, .15);
+  border-radius: 10px;
+}
+
+.info-tooltip__message {
+  max-width: 315px;
+  width: 100%;
+  margin: 0;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.17;
+  color: #000;
+}
+
+.info-tooltip__redirect-btn {
+  display: inline-block;
+  margin: 14px 0 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-family: 'Inter';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  color: #2F71E5;
+  cursor: pointer;
+  transition: opacity .3s ease-in-out;
+}
+
+.info-tooltip__redirect-btn:hover {
+  opacity: .7;
+}
+
+@media screen and (max-width: 620px) {
+  .info-tooltip {
+    height: 100vh;
+    padding: 22px 18px 0; 
+  }
+}

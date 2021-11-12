@@ -1,0 +1,43 @@
+.notfound {
+  padding: 80px 0 80px;
+  display: grid;
+  place-items: center;
+}
+
+.notfound__container {
+  max-width: 250px;
+}
+
+.notfound__drawing {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto;
+  background-image: url('../../images/notfound-picture.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+}
+
+.notfound__title {
+  margin: 24px 0 0;
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.notfound__message {
+  margin: 16px 0 0;
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: center;
+  color: #B6BCBF;
+}
+
+@media screen and (max-width: 768px) {
+  .notfound {
+    padding: 40px 0;
+  }
+}

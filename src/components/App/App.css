@@ -1,0 +1,42 @@
+.page__container {
+  max-width: 1440px;
+  min-width: 320px;
+  margin: 0 auto;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+.page__container_with-background {
+  background-image: url('../../images/main-background-georgia-de-lotz.jpg');
+  background-position: top;
+  background-size: 1440px;
+  background-repeat: no-repeat;
+}
+
+
+.page__container_noscroll {
+  overflow-y: hidden;
+  height: 100vh;
+}
+
+@media screen and (max-width: 768px) {
+  .page__container_with-background {
+    background-size: 768px;
+    background-image: url('../../images/main-background-tablet-georgia-de-lotz-min.jpg');
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .page__container_with-background {
+    background-size: contain;
+    background-image: url('../../images/main-background-mobile-georgia-de-lotz-min.jpg');
+  }
+  
+  .page__container_noscroll {
+    background-size: 100%;
+  } 
+}
+
