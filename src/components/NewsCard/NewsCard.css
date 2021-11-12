@@ -33,7 +33,7 @@
 
 .news-card__date {
   margin-bottom: 12px;
-  font-family: 'Source Sans Pro';
+  font-family: 'Source Sans Pro', monospace;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.33;
@@ -49,7 +49,7 @@
 }
 .news-card__title {
   margin: 0;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', monospace;
   font-weight: 400;
   font-size: 26px;
   line-height: 1.15;
@@ -72,7 +72,7 @@
 
 .news-card__source {
   margin: 0;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', monospace;
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;

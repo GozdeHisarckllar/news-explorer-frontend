@@ -26,7 +26,7 @@
 .about__title {
   margin: 51px 0 0;
   align-self: center;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', monospace;
   font-weight: 400 ;
   font-size: 40px;
   line-height: 1.15;

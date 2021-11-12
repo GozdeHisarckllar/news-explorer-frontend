@@ -25,7 +25,7 @@
 }
 
 .header__link_type_logo {
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', monospace;
   font-weight: 700;
   font-size: 20px;
   line-height: 1.2;

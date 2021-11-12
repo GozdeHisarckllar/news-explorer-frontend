@@ -16,7 +16,7 @@
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid rgba(0,0,0,.2);
-  font-family: 'Inter';
+  font-family: 'Inter', monospace;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.2;
@@ -37,7 +37,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  font-family: 'Inter';
+  font-family: 'Inter', monospace;
   font-weight: normal;
   font-size: 12px;
   line-height: 1.25;

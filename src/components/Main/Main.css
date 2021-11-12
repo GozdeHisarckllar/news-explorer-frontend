@@ -13,7 +13,7 @@
   max-width: 100%;
   width: 100%;
   margin: 0 auto;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', monospace;
   font-weight: 400;
   font-size: 60px;
   line-height: 1.1;
@@ -52,7 +52,7 @@
   max-width: 712px;
   width: 100%;
   margin: 0;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', monospace;
   font-weight: 400;
   font-size: 40px;
   line-height: 1.15;

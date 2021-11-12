@@ -21,7 +21,7 @@
 
 .notfound__title {
   margin: 24px 0 0;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', monospace;
   font-weight: 400;
   font-size: 26px;
   line-height: 1.15;
