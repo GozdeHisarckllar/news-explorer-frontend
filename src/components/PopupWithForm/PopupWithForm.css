@@ -84,18 +84,18 @@
   transition: background-color .3s ease-in-out;
 }
 
-.form__submit-btn_disabled {
-  background: #E6E8EB;
-  box-shadow: none;
-  color: #B6BCBF;
-}
-
 .form__submit-btn:hover {
   background-color: #347EFF;
 }
 
 .form__submit-btn:active {
   background-color: #2A65CC;
+}
+
+.form__submit-btn:disabled {
+  background-color: #E6E8EB;
+  box-shadow: none;
+  color: #B6BCBF;
 }
 
 .form__redirect-btn {

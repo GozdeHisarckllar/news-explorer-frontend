@@ -44,6 +44,7 @@
   color: #f00;
   visibility: hidden;
   opacity: 0;
+  transition: all .3s ease-in-out;
 }
 
 .form__input-error_visible {
@@ -51,8 +52,16 @@
   opacity: 1;
 }
 
+.form__input-error_type_submit {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  top: 60%;
+  left: 0;
+}
+
 @media screen and (max-width: 620px) {
   .form__label:last-of-type {
-    margin-bottom: 15px;
+    margin-bottom: 22px;/*15px*/
   }
 }

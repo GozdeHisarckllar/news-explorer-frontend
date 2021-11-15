@@ -8,7 +8,12 @@ const PopupWithForm = (props) => {
           <fieldset className="form__input-container">
             <legend className="form__caption">{props.title}</legend>
             {props.children}
-            <button type="submit" disabled={false} className="form__submit-btn">{props.buttonLabel}</button>
+            <button 
+              type="submit" 
+              disabled={!props.isFormValid ? true : false} 
+              className="form__submit-btn">
+              {props.buttonLabel}
+            </button>
           </fieldset>
           <button type="button" className="form__redirect-btn" aria-label="redirect to authorize">or <span className="form__redirect-label" onClick={props.onRedirect}>{props.linkLabel}</span></button>
         </form>
