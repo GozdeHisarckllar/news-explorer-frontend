@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import './NavMobile.css';
 
-const NavMobile = ({ loggedIn, isHomeRendered, isHeaderExpanded, onLogout, onSignInClick, onRemoveHeaderMobile}) => {
+const NavMobile = ({ loggedIn, currentUser, isHomeRendered, isHeaderExpanded, onLogout, onSignInClick, onRemoveHeaderMobile}) => {
 
   return(
     <div className={isHeaderExpanded ? 'overlay':''}>
@@ -14,7 +14,7 @@ const NavMobile = ({ loggedIn, isHomeRendered, isHeaderExpanded, onLogout, onSig
             onClick={onLogout} 
             to="/"
           >
-            <p className="nav-mobile__username">Elise</p>
+            <p className="nav-mobile__username">{currentUser.name}</p>
             <div className={`nav-mobile__icon-logout ${isHomeRendered ? 'nav-mobile__icon-logout_light':''}`}></div>
           </Link>
         </div>

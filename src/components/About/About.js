@@ -9,8 +9,9 @@ const About = () => {
         <div className="about__text">
           <h2 className="about__title">About the author</h2>
           <p className="about__info about__info_type_intro">Welcome to the News Explorer app! 
-            I'm Gözde Hisarcıklılar and the developer of this project. As in the case of this project, 
-            I enjoy developing apps using Javacript, React, Node.js and version control with Git.
+            I'm Gözde Hisarcıklılar and the developer of this project. As in the case of this 
+            final project for the Practicum by Yandex curriculum, I enjoy developing apps using 
+            Javacript, React, Node.js and version control with Git.
           </p>
           <p className="about__info about__info_type_main">
             Through the comprehensive projects and learning platform, Practicum by Yandex has introduced me a deeper 

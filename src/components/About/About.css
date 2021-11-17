@@ -64,7 +64,8 @@
 @media screen and (max-width: 620px) {
   .about {
     width: calc(100% - 32px);
-    padding: 32px 0;
+    padding: 32px 16px;/*0*/
+    background-color: #fff;
   }
 
   .about__article {
@@ -80,3 +81,9 @@
     margin-top: 24px;
   }
 }
+/*about --> width: calc(100% - 32px);
+    padding: 32px 16px 0;
+    background-color: #fff;*/
+
+    /*background-color: #fff;
+    padding: 32px 16px*/

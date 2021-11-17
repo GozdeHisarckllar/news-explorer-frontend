@@ -1,5 +1,7 @@
 .news-card {
   position: relative;
+  /*max-width: 400px;/************************/
+  /*margin: 0 auto; /*********************/
   background-color: #fff;
   border-radius: 16px;
   transition: all .2s linear;
@@ -47,6 +49,19 @@
   justify-content: space-between;
 
 }
+
+/*display: grid;
+    flex-direction: column;X
+    grid-auto-rows: 145
+px
+ 250
+px
+ 38
+px
+;
+    grid-row-gap: 20
+px
+;*/
 .news-card__title {
   margin: 0;
   font-family: 'Roboto Slab', monospace;
@@ -54,7 +69,7 @@
   font-size: 26px;
   line-height: 1.15;
   color: #1A1B22;
-  flex-grow: .4;
+  flex-grow: 1.4;
 }
 
 .news-card__text {
@@ -67,7 +82,8 @@
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 5;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
+  flex-shrink: 1; 
 }
 
 .news-card__source {
@@ -79,6 +95,7 @@
   letter-spacing: .4px;
   text-transform: uppercase;
   color: #B6BCBF;
+  flex-shrink: 1;
 }
 
 .news-card__btn {

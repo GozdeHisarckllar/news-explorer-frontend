@@ -1,10 +1,15 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import NavMobile from '../NavMobile/NavMobile';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import './Header.css';
+
 
 const Header = ({ loggedIn, isHomeRendered, onLogout, isHeaderExpanded, onExpandHeader, 
   onSignInClick, onRemoveHeaderMobile, isLoginPopupOpen, isRegisterPopupOpen, isInfoTooltipOpen }) => {
+
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <header className={`header ${!isHomeRendered ? 'header_border_dark':''} ${isHeaderExpanded && isHomeRendered ? 'header_dark':''}`}>
@@ -18,6 +23,7 @@ const Header = ({ loggedIn, isHomeRendered, onLogout, isHeaderExpanded, onExpand
         </NavLink>
         <Navigation
           loggedIn={loggedIn}
+          currentUser={currentUser}
           isHomeRendered={isHomeRendered}
           onLogout={onLogout}
           onSignInClick={onSignInClick}
@@ -32,6 +38,7 @@ const Header = ({ loggedIn, isHomeRendered, onLogout, isHeaderExpanded, onExpand
       </div>
       <NavMobile 
         loggedIn={loggedIn}
+        currentUser={currentUser}
         isHomeRendered={isHomeRendered}
         isHeaderExpanded={isHeaderExpanded}
         onLogout={onLogout}

@@ -78,7 +78,7 @@ const LoginPopup = ({ isOpen, onClose, onLogin, submitErrorMessage, onResetSubmi
           </span>
         </label>
         <span 
-          className={`form__input-error form__input-error_type_submit ${submitErrorMessage ? 'form__input-error_visible':''}`}
+          className={`form__input-error form__input-error_type_submit ${submitErrorMessage && isOpen ? 'form__input-error_visible':''}`}
         >
           {submitErrorMessage}
         </span>

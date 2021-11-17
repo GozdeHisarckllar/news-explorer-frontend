@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
-const Navigation = ({ loggedIn, isHomeRendered, onLogout, onSignInClick}) => {
+const Navigation = ({ loggedIn, currentUser, isHomeRendered, onLogout, onSignInClick}) => {
   return(
     <nav className="navbar">
       <NavLink className="navbar__link" activeClassName="navbar__link_active_home border" to="/" exact={true}>Home</NavLink>
@@ -15,7 +15,7 @@ const Navigation = ({ loggedIn, isHomeRendered, onLogout, onSignInClick}) => {
             onClick={onLogout}
             to="/"
           >
-            <p className={`navbar__username ${isHomeRendered ? 'navbar__username_page_home' : ''}`}>Elise</p>
+            <p className={`navbar__username ${isHomeRendered ? 'navbar__username_page_home' : ''}`}>{currentUser.name}</p>
             <div className={`navbar__icon-logout ${isHomeRendered ? 'navbar__icon-logout_page_home' : ''}`}></div>
           </NavLink>
         </>

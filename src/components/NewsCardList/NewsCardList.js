@@ -2,7 +2,7 @@ import NewsCard from '../NewsCard/NewsCard';
 import './NewsCardList.css';
 
 
-const NewsCardList = ({ newsCards, isHomeRendered, loggedIn }) => {
+const NewsCardList = ({ newsCards, isHomeRendered, loggedIn, onSave, onRemove, isArticleSaved, chosenCards }) => {
   return(
     <ul className="news-card-list">
       {  newsCards.map((newsCard, i) => (
@@ -11,6 +11,10 @@ const NewsCardList = ({ newsCards, isHomeRendered, loggedIn }) => {
           key={i} 
           isHomeRendered={isHomeRendered} 
           loggedIn={loggedIn}
+          onSave={onSave}
+          isArticleSaved={isArticleSaved}
+          onRemove={onRemove}
+          chosenCards={chosenCards}
         />
         ))
       }

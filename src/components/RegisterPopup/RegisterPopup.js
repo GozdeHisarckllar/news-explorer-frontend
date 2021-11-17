@@ -3,7 +3,7 @@ import useFormAndValidation from '../../hooks/useFormAndValidation';
 import './RegisterPopup.css';
 import { useEffect } from 'react/cjs/react.development';
 
-const RegisterPopup = ({ isOpen, onClose, onRegister, submitErrorMessage, isInputDisabled, onRedirect }) => {
+const RegisterPopup = ({ isOpen, isOpenUnauth, onClose, onRegister, submitErrorMessage, isInputDisabled, onRedirect }) => {
   const { 
     values, 
     errors, 
@@ -28,6 +28,7 @@ const RegisterPopup = ({ isOpen, onClose, onRegister, submitErrorMessage, isInpu
       buttonLabel="Sign up"
       linkLabel="Sign in"
       isOpen={isOpen}
+      isOpenUnauth={isOpenUnauth}
       onClose={onClose}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
@@ -87,8 +88,10 @@ const RegisterPopup = ({ isOpen, onClose, onRegister, submitErrorMessage, isInpu
           type="text" 
           className="form__input form__input_type_username" 
           id="signup-username" 
-          name="username" 
-          placeholder="Enter your username"
+          name="username"
+          pattern="^[A-Z][a-z]{1,29}\b"
+          placeholder="Enter your username such as 'Denise' or 'Susie'"
+          maxLength="11"
           value={values['username'] || ''}
           onChange={handleChange}
           disabled={isInputDisabled ? true : false}
@@ -101,7 +104,7 @@ const RegisterPopup = ({ isOpen, onClose, onRegister, submitErrorMessage, isInpu
         </span>
       </label>
       <span 
-        className={`form__input-error form__input-error_type_submit form__input-error_popup_signup ${submitErrorMessage ? 'form__input-error_visible':''}`}
+        className={`form__input-error form__input-error_type_submit form__input-error_popup_signup ${submitErrorMessage && isOpen ? 'form__input-error_visible':''}`}
       >
         {submitErrorMessage}
       </span>

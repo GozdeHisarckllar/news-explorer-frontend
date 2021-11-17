@@ -25,7 +25,7 @@
 }
 
 .form__input::placeholder {
-  opacity: .4;
+  opacity: .6;
 }
 
 .form__input:focus-visible {

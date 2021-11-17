@@ -2,7 +2,7 @@ import './PopupWithForm.css';
 
 const PopupWithForm = (props) => {
   return(
-    <div className={`modal modal_type_${props.name} ${props.isOpen ? 'modal_opened':''}`}>
+    <div className={`modal modal_type_${props.name} ${props.isOpen || props.isOpenUnauth ? 'modal_opened':''}`}>
       <div className="modal__container">
         <form action="#" className="form" name={props.name} onSubmit={props.onSubmit}>
           <fieldset className="form__input-container">
