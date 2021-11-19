@@ -87,6 +87,28 @@
   display: none;
 }
 
+.news-cards__search-error {
+  padding: 80px 0 80px;
+  display: grid;
+  place-items: center;
+}
+
+.news-cards__search-error-title {
+  font-family: 'Roboto Slab', monospace;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.news-cards__search-error-message {
+  margin: 16px 0 0;
+  font-size: 20px;
+  line-height: 1.33;
+  text-align: center;
+  color: #929799fa;
+}
+
 @media screen and (max-width: 768px ) {
   .search {
     max-width: 452px;

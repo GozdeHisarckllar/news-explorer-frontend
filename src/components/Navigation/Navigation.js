@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 const Navigation = ({ loggedIn, currentUser, isHomeRendered, onLogout, onSignInClick}) => {
+  //context loggedIn
   return(
     <nav className="navbar">
       <NavLink className="navbar__link" activeClassName="navbar__link_active_home border" to="/" exact={true}>Home</NavLink>

@@ -11,7 +11,7 @@ class NewsApi {
   }
 
   getSearchedArticles(keyword) {
-    return fetch(`${NEWS_BASE_URL}?q=${keyword}&apiKey=${API_KEY}`, {
+    return fetch(`${NEWS_BASE_URL}?q=${keyword}&from=2021-11-15&to=2021-11-15&pageSize=100&apiKey=${API_KEY}`, {
       headers: this._headers
     })
       .then(this._handleResponse)
@@ -28,3 +28,4 @@ export const newsApiInstance = new NewsApi({
   }
  }
 )
+//The date parameters of requests to News API must be calculated automatically (7 days prior to the current date). We recommend converting the from parameter to a timestamp and vice versa. /

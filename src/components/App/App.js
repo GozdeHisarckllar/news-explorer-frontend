@@ -12,6 +12,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { mainApiAuthInstance, createMainApiInstance } from '../../utils/MainApi';
 import { newsApiInstance } from '../../utils/NewsApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { createKeywordsObjAndSort } from '../../utils/utils';
 //The Main, NavBar, and SavedNewsHeader components are subscribed to the CurrentUserContext context
 function App() {
   
@@ -24,7 +25,7 @@ function App() {
 
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-  const [isUnauthRegisterPopupOpen, setIsUnauthRegisterPopupOpen] = useState(false);/////////////
+  const [isUnauthRegisterPopupOpen, setIsUnauthRegisterPopupOpen] = useState(false);/////////////del
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
   const [submitErrorMessage, setsubmitErrorMessage ] = useState('');
@@ -38,9 +39,13 @@ function App() {
   const [isPreloaderVisible, setIsPreloaderVisible] = useState(false);
   const [isArticleSaved, setIsArticleSaved ] = useState(false);
   const [savedCards, setSavedCards] = useState([]);
+  const [savedCardsCount, setSavedCardsCount] = useState(0);
+  const [savedKeywords, setSavedKeywords] = useState({});
   const [keyword, setKeyword] = useState('');
 
   const [selectedCards, setSelectedCards] = useState([]);
+
+  const [searchError, setSearchError] = useState(false);
   /*function handleResetSubmitError() {
     setSubmitErrorMessage('');
   }*/
@@ -102,7 +107,10 @@ function App() {
           setSavedCards(savedArticles.data);
         })
         .catch((err) => {
-          console.log(`Error: ${err.message}`);/*err.message*/
+          if (err.statusCode === 404) {
+            return console.log(`Error: ${err.statusCode} - No bookmarked articles found on your 'Saved Articles' list`);
+          }
+          console.log(`Error: ${err.message}`);
         });
     }
   }, [token]);
@@ -115,6 +123,9 @@ function App() {
     localStorage.removeItem('token');
     setToken('');
     setLoggedIn(false);
+    setSavedCards([]);
+    setNewsCards([]);
+    setIsKeywordSubmitted(false);
   }
 
   function handleRenderHomePage(boolean) {
@@ -154,11 +165,22 @@ function App() {
     setKeyword(keyword);
     newsApiInstance.getSearchedArticles(keyword)
       .then((articleData) => {
-        setNewsCards(articleData.articles.filter((searchedArticle) => {
+        /*setNewsCards(articleData.articles.filter((searchedArticle) => {
           return savedCards.some((savedArticle) => savedArticle.link !== searchedArticle.url);
+        }));*/
+        /*savedCards.forEach((card) => {
+          selectedCards.push(articleData.articles.filter((article) => card.link === article.url));
+         
+        });*/
+        setSelectedCards(articleData.articles.filter((article) => {
+          return savedCards.some((card) => card.link === article.url)
         }));
+
+        setNewsCards(articleData.articles);
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        setSearchError(true);
+        console.log(err)})
       .finally(() => setIsPreloaderVisible(false));
   }
 
@@ -167,42 +189,43 @@ function App() {
       //setIsRegisterPopupOpen(true);
       setIsUnauthRegisterPopupOpen(true);
     } else {
-      let isSaved;
-      let savedArticle;
-      if (savedCards.length !== 0) { //for only getsaved articles
-        createMainApiInstance(token).getSavedArticles()
-          .then((savedArticles) => {
-            savedArticle = savedArticles.data.find((savedArticle) => {
-              return savedArticle.link === article.url;
-            });
-            savedArticle ? isSaved = true : isSaved = false;
-            return isSaved;
-          })
-          .then((isSaved) => {
-            createMainApiInstance(token).changeArticleSavedStatus(keyword, article, isSaved, savedArticle)
+        let isSaved; //outside
+        let savedArticle;
+
+        if (savedCards.length !== 0) { //for only getsaved articles
+          createMainApiInstance(token).getSavedArticles()
+            .then((savedArticles) => {
+              savedArticle = savedArticles.data.find((savedArticle) => {
+                return savedArticle.link === article.url;
+              });
+              savedArticle ? isSaved = true : isSaved = false;
+              return isSaved;
+            })
+            .then((isSaved) => {
+              createMainApiInstance(token).changeArticleSavedStatus(keyword, article, isSaved, savedArticle)
+              .then((res) => {
+                if (res.data) {
+                  setSavedCards([...savedCards, res.data]);
+                  setSelectedCards([...selectedCards, article]);
+                } else {
+                  setSelectedCards(selectedCards.filter((selectedArticle) => selectedArticle.url !== article.url));
+                  setSavedCards(savedCards.filter((savedCard) => savedCard.link !== savedArticle.link));
+                }
+              })
+              .catch((err) => console.log(err));
+            })
+            .catch((err) => console.log(err));
+          
+        } else {
+          //createMainApiInstance(token).getSavedArticles()
+          isSaved = false
+          createMainApiInstance(token).changeArticleSavedStatus(keyword, article, isSaved)
             .then((res) => {
-              if (res.data) {
-                setSavedCards([...savedCards, res.data]);
-                setSelectedCards([...selectedCards, article]);
-              } else {
-                setSelectedCards(selectedCards.filter((selectedArticle) => selectedArticle.url !== article.url));
-                setSavedCards(savedCards.filter((savedCard) => savedCard.link !== savedArticle.link));
-                console.log(res);
-              }
-            }).catch((err) => console.log(err));
-          })
-          .catch((err) => console.log(err));
-        
-      } /*else {
-        //createMainApiInstance(token).getSavedArticles()
-        isSaved = false
-        createMainApiInstance(token).changeArticleSavedStatus(keyword, article, isSaved)
-          .then((res) => {
-            setSavedCards([...savedCards, res.data]);
-          }
-      
-          );
-      }*/
+              setSavedCards([...savedCards, res.data]);
+              setSelectedCards([...selectedCards, article]);
+            })
+            .catch((err) => console.log(err));
+        }
     }
   }
 
@@ -212,7 +235,7 @@ function App() {
         setSavedCards(savedCards.filter((savedCard) => 
           savedCard._id !== article._id
         ));
-        console.log(res);
+        setSelectedCards(selectedCards.filter((selectedArticle) => selectedArticle.url !== article.link));
       })
       .catch((err) => console.log(err));
   }
@@ -289,12 +312,17 @@ function App() {
   }, [isHomeRendered, loggedIn, isLoginPopupOpen]);
 
   useEffect(() => {
+    setSavedCardsCount(savedCards.length);
+    setSavedKeywords(createKeywordsObjAndSort(savedCards));
+  },[savedCards]);
+
+  useEffect(() => {
     const closeByEscape = (e) => {
       if (e.key === 'Escape') {
         closeAllPopups();
       }
     };
-
+    
     const closeByMouseClick = (e) => {
       if (e.target.classList.contains('modal')) {
         closeAllPopups();
@@ -349,6 +377,7 @@ function App() {
               isArticleSaved={isArticleSaved}
               newsCards={newsCards}
               onSubmitKeyword={isKeywordSubmitted}
+              searchError={searchError}
               isHomeRendered={isHomeRendered}
               loggedIn={loggedIn}
               chosenCards={selectedCards}
@@ -358,6 +387,8 @@ function App() {
           <Route path="/saved-news">
             <SavedNews
               savedCards={savedCards}
+              savedCardsCount={savedCardsCount}
+              savedKeywords={savedKeywords}
               isHomeRendered={isHomeRendered}
               onRenderHome={handleRenderHomePage}
               onRemove={handleRemoveSavedArticle}

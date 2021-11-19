@@ -39,7 +39,7 @@
   left: 0;
   font-family: 'Inter', monospace;
   font-weight: normal;
-  font-size: 12px;
+  font-size: 12px; /*13px*/
   line-height: 1.25;
   color: #f00;
   visibility: hidden;

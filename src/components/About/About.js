@@ -8,7 +8,7 @@ const About = () => {
         <img className="about__avatar" src={author} alt="author avatar"/>
         <div className="about__text">
           <h2 className="about__title">About the author</h2>
-          <p className="about__info about__info_type_intro">Welcome to the News Explorer app! 
+          <p className="about__info about__info_type_intro">Welcome to News Explorer !
             I'm Gözde Hisarcıklılar and the developer of this project. As in the case of this 
             final project for the Practicum by Yandex curriculum, I enjoy developing apps using 
             Javacript, React, Node.js and version control with Git.

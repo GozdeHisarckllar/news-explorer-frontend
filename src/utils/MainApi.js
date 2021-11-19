@@ -70,12 +70,14 @@ class MainApi {
     if (res.ok) {
       return res.json();
     }
+    const error = new Error();
+    error.statusCode = res.status;
     return res.json()
       .then((res) => {
-        
+          error.message = res.message;
         /*return Promise.reject(new Error(res.message));*/
         
-        const error = new Error(res.message);
+        //const error = new Error(res.message);
         throw error; // error classes this_handelr()
     });
   }
@@ -96,7 +98,7 @@ class MainApi {
       .then(this._handleResponse);
   }
   
-  changeArticleSavedStatus(keyword, article, isSaved, savedArticle) {
+  changeArticleSavedStatus(keyword, article, isSaved, savedArticle=null) {
     if (!isSaved) {
       return fetch(`${this._base_url}/articles`, {
         method: 'POST',

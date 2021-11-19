@@ -7,8 +7,8 @@ import NotFound from '../NotFound/NotFound';
 import Preloader from '../Preloader/Preloader';
 
 const Main = ({ onRenderHome, onSearch, onSave,  isPreloaderVisible, 
-  isArticleSaved, newsCards, onSubmitKeyword, isHomeRendered, loggedIn, chosenCards }) => {
-  
+  isArticleSaved, newsCards, onSubmitKeyword, searchError, isHomeRendered, loggedIn, chosenCards }) => {
+  //context loggedIn
   const [ isExpanded, setIsExpanded] = useState(false);
   
   useEffect(() => {
@@ -51,10 +51,15 @@ const Main = ({ onRenderHome, onSearch, onSave,  isPreloaderVisible,
               </button>
            </div> 
            :
-           onSubmitKeyword && <NotFound
+           onSubmitKeyword && !searchError ?<NotFound
              title="Nothing Found"
              message="Sorry, but nothing matched your search terms."
-           />
+           /> : onSubmitKeyword && 
+             <div class="news-cards__search-error">
+              <p class="news-cards__search-error-title">Sorry, something went wrong during the request.</p>
+              <p class="news-cards__search-error-message">There may be a connection issue or the server may be down. Please try again later.</p>
+             </div>
+        
           }
         </div>
       </section>

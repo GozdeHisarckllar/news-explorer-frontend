@@ -4,7 +4,7 @@ import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import NotFound from '../NotFound/NotFound';
 import './SavedNews.css';
 
-const SavedNews = ({ onRenderHome, savedCards, isHomeRendered, onRemove }) => {
+const SavedNews = ({ onRenderHome, savedCards, savedCardsCount, savedKeywords, isHomeRendered, onRemove }) => {
   
   useEffect(() => {
     onRenderHome(false);
@@ -12,7 +12,10 @@ const SavedNews = ({ onRenderHome, savedCards, isHomeRendered, onRemove }) => {
 
   return(
     <div className="saved-news">
-      <SavedNewsHeader/>
+      <SavedNewsHeader 
+        savedCardsCount={savedCardsCount}
+        savedKeywords={savedKeywords}
+      />
       <section className="bookmarks">
         <div className="bookmarks__container">
         { savedCards.length > 0 ?
