@@ -38,6 +38,25 @@
   border-color: #2F71E5;
 }
 
+.search-form__input-error {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  font-family: 'Inter', monospace;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #f00;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s ease-in-out;
+}
+
+.search-form__input-error_visible {
+  visibility: visible;
+  opacity: 1;
+
+}
 .search-form__button {
   position: absolute;
   padding: 20px 56px 21px;

@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import './NavMobile.css';
 
-const NavMobile = ({ loggedIn, isHomeRendered, isHeaderExpanded, onLogout, onSignInClick, onRemoveHeaderMobile}) => {
-
+const NavMobile = ({ loggedIn, isHomeRendered, isHeaderExpanded, onLogout, onSignInClick }) => {
+  
+  const currentUser = useContext(CurrentUserContext);
+  
   return(
     <div className={isHeaderExpanded ? 'overlay':''}>
       <nav className={`nav-mobile ${isHeaderExpanded ? 'nav-mobile_visible':''} ${isHomeRendered ? 'nav-mobile_dark':'nav-mobile_light'}`}>
@@ -10,13 +14,12 @@ const NavMobile = ({ loggedIn, isHomeRendered, isHeaderExpanded, onLogout, onSig
         { loggedIn ?
         <div className='nav-mobile__flex-container'>
           <Link className={`nav-mobile__link ${isHomeRendered ? 'nav-mobile__link_light':''}`} to="/saved-news" >Saved articles</Link>
-          <Link className={`nav-mobile__link nav-mobile__link_type_logout ${isHomeRendered ? 'nav-mobile__link_decor_light':''}`} 
+          <button className={`nav-mobile__link nav-mobile__link_type_logout ${isHomeRendered ? 'nav-mobile__link_decor_light':''}`} 
             onClick={onLogout} 
-            to="/"
           >
-            <p className="nav-mobile__username">Elise</p>
+            <p className="nav-mobile__username">{currentUser.name}</p>
             <div className={`nav-mobile__icon-logout ${isHomeRendered ? 'nav-mobile__icon-logout_light':''}`}></div>
-          </Link>
+          </button>
         </div>
         :
           <button className="nav-mobile__button-login" onClick={onSignInClick} type="button" aria-label="Sign in">Sign in</button>

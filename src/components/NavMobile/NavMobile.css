@@ -56,6 +56,7 @@
   width: 150px;
   justify-content: space-around;
   align-items: center;
+  background-color: transparent;
   border: 1px solid #1A1B22;
   border-radius: 100px;
   cursor: pointer;
@@ -68,6 +69,10 @@
 
 .nav-mobile__username {
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 84px;
 }
 
 .nav-mobile__icon-logout {

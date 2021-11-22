@@ -3,8 +3,10 @@ import Navigation from '../Navigation/Navigation';
 import NavMobile from '../NavMobile/NavMobile';
 import './Header.css';
 
+
 const Header = ({ loggedIn, isHomeRendered, onLogout, isHeaderExpanded, onExpandHeader, 
   onSignInClick, onRemoveHeaderMobile, isLoginPopupOpen, isRegisterPopupOpen, isInfoTooltipOpen }) => {
+
 
   return (
     <header className={`header ${!isHomeRendered ? 'header_border_dark':''} ${isHeaderExpanded && isHomeRendered ? 'header_dark':''}`}>
@@ -18,6 +20,7 @@ const Header = ({ loggedIn, isHomeRendered, onLogout, isHeaderExpanded, onExpand
         </NavLink>
         <Navigation
           loggedIn={loggedIn}
+         
           isHomeRendered={isHomeRendered}
           onLogout={onLogout}
           onSignInClick={onSignInClick}
@@ -32,6 +35,7 @@ const Header = ({ loggedIn, isHomeRendered, onLogout, isHeaderExpanded, onExpand
       </div>
       <NavMobile 
         loggedIn={loggedIn}
+       
         isHomeRendered={isHomeRendered}
         isHeaderExpanded={isHeaderExpanded}
         onLogout={onLogout}

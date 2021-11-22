@@ -1,4 +1,5 @@
-.form__input-error_type_signup {
-  top: 69%;
-  left: 26%;
+.form__input-error_popup_signup {
+  position: absolute;
+  top: 70%;
+  left: 0;
 }
