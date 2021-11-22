@@ -1,22 +1,28 @@
-import useFormAndValidation from '../../hooks/useFormAndValidation';
+import { useState } from 'react';
 import './SearchForm.css';
 
-const SearchForm = ({ onSearch }) => {
+const SearchForm = ({ onSearch, isInputDisabled }) => {
 
-  const { 
-    values, 
-    errors, 
-    isFormValid, 
-    handleChange, 
-    resetFormValidation 
-  } = useFormAndValidation();
-
-  /*if value="" submit error*/
+const [values, setValues] = useState({});
+ 
   function handleSubmit(event) {
     event.preventDefault();
+    
     onSearch(values);
-
   }
+  
+  function handleChange(event) {
+    const {name, value} = event.target;
+    setValues({...values, [name]: value});
+    event.target.setCustomValidity("");
+  }
+
+  function setCustomInvalidError(event) {
+    if (!values['keyword'] ) {
+      event.target.setCustomValidity("Please enter a keyword");
+    }
+  }
+  
   return(
     <form className="search-form" name="search" onSubmit={handleSubmit}>
       <label className="search-form__label">
@@ -27,9 +33,12 @@ const SearchForm = ({ onSearch }) => {
           placeholder="Enter topic"
           value={values['keyword'] || ''}
           onChange={handleChange}
+          onInvalid={setCustomInvalidError}
+          disabled={isInputDisabled ? true : false}
           required
         >
         </input>
+        
       </label>
       <button className="search-form__button" type="submit">Search</button>
     </form>

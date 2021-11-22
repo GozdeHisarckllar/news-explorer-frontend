@@ -21,6 +21,9 @@
   font-family: 'Roboto Slab';
   font-size: 40px;
   line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow: hidden;
 }
 
 .saved-info__req-info {

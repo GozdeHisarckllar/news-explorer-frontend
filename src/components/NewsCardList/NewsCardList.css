@@ -1,6 +1,7 @@
 .news-card-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%/4), 1fr));
+  justify-items: center;
   gap: 16px 16px;
   padding: 64px 0 64px;
   margin: 0;

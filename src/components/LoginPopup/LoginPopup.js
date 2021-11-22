@@ -3,7 +3,7 @@ import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 import './LoginPopup.css';
 
-const LoginPopup = ({ isOpen, onClose, onLogin, submitErrorMessage, onResetSubmitError, isInputDisabled, onRedirect }) => {
+const LoginPopup = ({ isOpen, onClose, onLogin, submitErrorMessage, isInputDisabled, onRedirect }) => {
   const { 
     values, 
     errors, 
@@ -12,7 +12,7 @@ const LoginPopup = ({ isOpen, onClose, onLogin, submitErrorMessage, onResetSubmi
     resetFormValidation 
   } = useFormAndValidation();
 
-  function handleSubmit(event) {//state -->disable or not app.js state?<input disabled>
+  function handleSubmit(event) {
     event.preventDefault();
     onLogin(values);
   }
@@ -31,6 +31,7 @@ const LoginPopup = ({ isOpen, onClose, onLogin, submitErrorMessage, onResetSubmi
       onClose={onClose}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
+      isInputDisabled={isInputDisabled}
       onRedirect={onRedirect}
      >
         <label 

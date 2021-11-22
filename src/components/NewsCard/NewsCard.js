@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import './NewsCard.css';
 
 
-const NewsCard  = ({ newsCard, isHomeRendered, loggedIn, onSave, isArticleSaved, onRemove, chosenCards }) => {
+const NewsCard  = ({ newsCard, isHomeRendered, loggedIn, onSave, onRemove, chosenCards }) => {
   let isSelected;
   if (chosenCards) {
    isSelected = chosenCards.some((chosenCard) => chosenCard.url === newsCard.url);

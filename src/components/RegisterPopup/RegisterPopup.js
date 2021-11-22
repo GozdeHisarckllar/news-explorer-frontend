@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWithForm';
 import useFormAndValidation from '../../hooks/useFormAndValidation';
 import './RegisterPopup.css';
-import { useEffect } from 'react/cjs/react.development';
 
-const RegisterPopup = ({ isOpen, isOpenUnauth, onClose, onRegister, submitErrorMessage, isInputDisabled, onRedirect }) => {
+
+const RegisterPopup = ({ isOpen, onClose, onRegister, submitErrorMessage, isInputDisabled, onRedirect }) => {
   const { 
     values, 
     errors, 
@@ -21,6 +22,7 @@ const RegisterPopup = ({ isOpen, isOpenUnauth, onClose, onRegister, submitErrorM
     resetFormValidation();
   }, [isOpen, resetFormValidation]);
   
+
   return(
     <PopupWithForm
       name="register"
@@ -28,10 +30,10 @@ const RegisterPopup = ({ isOpen, isOpenUnauth, onClose, onRegister, submitErrorM
       buttonLabel="Sign up"
       linkLabel="Sign in"
       isOpen={isOpen}
-      isOpenUnauth={isOpenUnauth}
       onClose={onClose}
       onSubmit={handleSubmit}
       isFormValid={isFormValid}
+      isInputDisabled={isInputDisabled}
       onRedirect={onRedirect}
     >
       <label 
@@ -91,7 +93,7 @@ const RegisterPopup = ({ isOpen, isOpenUnauth, onClose, onRegister, submitErrorM
           name="username"
           pattern="^[A-Z][a-z]{1,29}\b"
           placeholder="Enter your username such as 'Denise' or 'Susie'"
-          maxLength="11"
+          maxLength="30"
           value={values['username'] || ''}
           onChange={handleChange}
           disabled={isInputDisabled ? true : false}

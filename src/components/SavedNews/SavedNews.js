@@ -8,7 +8,7 @@ const SavedNews = ({ onRenderHome, savedCards, savedCardsCount, savedKeywords, i
   
   useEffect(() => {
     onRenderHome(false);
-  });
+  }, [onRenderHome]);
 
   return(
     <div className="saved-news">

@@ -1,8 +1,8 @@
 import { MAIN_BASE_URL } from "../config";
 
 class MainApiAuth {
-  constructor({ base_url, headers }) {
-    this._base_url = base_url; //baseUrl
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
     this._headers = headers;
   }
 
@@ -10,27 +10,20 @@ class MainApiAuth {
     if (res.ok) {
       return res.json();
     }
-    return res.json() // for err message
+    return res.json()
       .then((res) => {
-        
-        /*return Promise.reject(new Error(res.message));*/
-        
         const error = new Error(
           res.validation ?
           res.validation.body.message
           :
           res.message);
-        //error.status = res.status; 
-        //error.statusCode = res.statusCode;
-        /*if (res.validation) {
-          error.validKey = res.validation.body.keys;
-        }*/
-        throw error; // error classes this_handelr()
+        
+        throw error; 
     });
   }
 
   register(email, password, username) {
-    return fetch(`${this._base_url}/signup`, {
+    return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -42,7 +35,7 @@ class MainApiAuth {
   }
 
   authorize(email, password) {
-    return fetch(`${this._base_url}/signin`, {
+    return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({ email, password })
@@ -51,7 +44,7 @@ class MainApiAuth {
     .then((data) => {
       if (data.token) {
         localStorage.setItem('token', data.token);
-        return data;///
+        return data;
       } else {
         return;
       }
@@ -60,31 +53,29 @@ class MainApiAuth {
 }
 
 class MainApi {
-  constructor({ base_url, headers }) {
-    this._base_url = base_url;
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
     this._headers = headers;
   }
-/*return res.ok ? res.json() : Promise.reject(res.message);//*****/
 
   _handleResponse(res) {
     if (res.ok) {
       return res.json();
     }
+
     const error = new Error();
     error.statusCode = res.status;
+
     return res.json()
       .then((res) => {
-          error.message = res.message;
-        /*return Promise.reject(new Error(res.message));*/
-        
-        //const error = new Error(res.message);
-        throw error; // error classes this_handelr()
+        error.message = res.message;
+        throw error;
     });
   }
 
   getUserAccountInfo() {
-    return fetch(`${this._base_url}/users/me`, {
-      method: 'GET', /************ */
+    return fetch(`${this._baseUrl}/users/me`, {
+      method: 'GET',
       headers: this._headers
     })
      .then(this._handleResponse)
@@ -92,15 +83,15 @@ class MainApi {
   }
 
   getSavedArticles() {
-    return fetch(`${this._base_url}/articles`, {
+    return fetch(`${this._baseUrl}/articles`, {
       headers: this._headers
     })
-      .then(this._handleResponse);
+     .then(this._handleResponse);
   }
   
   changeArticleSavedStatus(keyword, article, isSaved, savedArticle=null) {
     if (!isSaved) {
-      return fetch(`${this._base_url}/articles`, {
+      return fetch(`${this._baseUrl}/articles`, {
         method: 'POST',
         headers: this._headers,
         body: JSON.stringify({
@@ -115,47 +106,25 @@ class MainApi {
       })
         .then(this._handleResponse);
     } else {
-      /*this.getSavedArticles()
-        .then((savedArticles) => {
-          const deletedArticle = savedArticles.data.filter((savedArticle) => {
-            return savedArticle.link === article.url;
-          });
-          return deletedArticle;
-        })*/
-        
-          return fetch(`${this._base_url}/articles/${savedArticle._id}`, {
-            method: 'DELETE',
-            headers: this._headers
-          })
-          .then(this._handleResponse);
-         
-       
-      
+        return fetch(`${this._baseUrl}/articles/${savedArticle._id}`, {
+          method: 'DELETE',
+          headers: this._headers
+        })
+         .then(this._handleResponse); 
     }
   }
 
   removeSavedArticle(articleId) {
-    return fetch(`${this._base_url}/articles/${articleId}`, {
+    return fetch(`${this._baseUrl}/articles/${articleId}`, {
       method: 'DELETE',
       headers: this._headers
     })
     .then(this._handleResponse)
   }
 }
-/*return fetch(`${this._base_url}/articles`, {
-        headers: this._headers
-      })
-        .then(this._handleResponse)
-        .then((res) => res.data)*/
-      /*this.getSavedArticles()
-        .then((savedArticles) => {
-          const deletedArticle = savedArticles.data.filter((savedArticle) => {
-            return savedArticle.link === article.url;
-          });
-          return deletedArticle;
-        })*/
+
 export const mainApiAuthInstance = new MainApiAuth({ 
-      base_url: MAIN_BASE_URL,
+      baseUrl: MAIN_BASE_URL,
       headers: {
         'Accept':'application/json',
         'Content-type':'application/json'
@@ -166,12 +135,12 @@ export const mainApiAuthInstance = new MainApiAuth({
 
 export const createMainApiInstance = (token) => {
   return new MainApi({ 
-    base_url: MAIN_BASE_URL,
+    baseUrl: MAIN_BASE_URL,
     headers: {
       'Accept':'application/json',
       'Content-type':'application/json',
       'Authorization': `Bearer ${token}`
     }
   }
-);
+ );
 }

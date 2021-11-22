@@ -10,9 +10,8 @@ function useFormAndValidation() {
     setValues({...values, [name]: value});
     setErrors({...errors, [name]: e.target.validationMessage});
     setIsFormValid(e.target.closest('form').checkValidity());
-    if (e.target.closest('form').name === 'register' || e.target.closest('form').name === 'login')
-    e.target.closest('form').querySelector('.form__input-error_type_submit').classList.remove('form__input-error_visible');
-  };// or position relative to all second input -err // or margin increase heights
+    e.target.closest('form').querySelector('.form__input-error_type_submit').classList.remove('form__input-error_visible'); 
+  };
 
   const resetFormValidation = useCallback((newValues={}, newErrors={}, newIsValid=false) => {
     setValues(newValues);

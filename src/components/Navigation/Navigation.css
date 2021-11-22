@@ -138,13 +138,13 @@
 }
 
 .navbar__link_type_logout {
-  /*width: 112px;*/
   width: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-left: 64px;
   padding: 12px 19px;
+  background-color: transparent;
   border: 1px solid #fff;
   box-sizing: border-box;
   border-radius: 100px;
@@ -161,6 +161,10 @@
 
 .navbar__username {
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 84px;
 }
 
 .navbar__icon-logout {
@@ -208,7 +212,6 @@
   }
 
   .navbar__link_type_logout {
-    /*width: 100px;*/
     width: fit-content;
     margin-left: 45px;
     padding: 8px 15px;

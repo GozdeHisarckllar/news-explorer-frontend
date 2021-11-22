@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Redirect, Route, Switch } from 'react-router';
+import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -8,51 +8,59 @@ import Footer from '../Footer/Footer';
 import LoginPopup from '../LoginPopup/LoginPopup';
 import RegisterPopup from '../RegisterPopup/RegisterPopup';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
-//import { articleCards } from '../../utils/placeholderData';
 import { mainApiAuthInstance, createMainApiInstance } from '../../utils/MainApi';
-import { newsApiInstance } from '../../utils/NewsApi';
+import newsApiInstance from '../../utils/NewsApi';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
-import { createKeywordsObjAndSort } from '../../utils/utils';
-//The Main, NavBar, and SavedNewsHeader components are subscribed to the CurrentUserContext context
+import { createSortedKeywordsObj } from '../../utils/utils';
+import ProtectedRoute from '../ProtectedRoute';
+
 function App() {
   
   const [loggedIn, setLoggedIn] = useState(false);
   const [isHomeRendered, setIsHomeRendered] = useState(true);
-  const [newsCards, setNewsCards] = useState([]);//placeholder cards//
-  const [isKeywordSubmitted, setIsKeywordSubmitted] = useState(false); ///////////////
+  const [newsCards, setNewsCards] = useState([]);
+  const [isKeywordSubmitted, setIsKeywordSubmitted] = useState(false);
 
   const [isHeaderExpanded, setIsHeaderExpanded] = useState(false);
 
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-  const [isUnauthRegisterPopupOpen, setIsUnauthRegisterPopupOpen] = useState(false);/////////////del
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
 
-  const [submitErrorMessage, setsubmitErrorMessage ] = useState('');
-  /*const [loginSubmitErrorMessage, setLoginSubmitErrorMessage ] = useState('');*/
-  /*const [registerSubmitErrorMessage, setRegisterSubmitErrorMessage ] = useState('');*/
+  const [submitErrorMessage, setSubmitErrorMessage ] = useState('');
+
   const [isInputDisabled, setIsInputDisabled ] = useState(false);
 
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [currentUser, setCurrentUser] = useState({});
 
   const [isPreloaderVisible, setIsPreloaderVisible] = useState(false);
-  const [isArticleSaved, setIsArticleSaved ] = useState(false);
+
   const [savedCards, setSavedCards] = useState([]);
   const [savedCardsCount, setSavedCardsCount] = useState(0);
   const [savedKeywords, setSavedKeywords] = useState({});
   const [keyword, setKeyword] = useState('');
 
   const [selectedCards, setSelectedCards] = useState([]);
+  
+  const [counter, setCounter] = useState(3);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const [searchError, setSearchError] = useState(false);
-  /*function handleResetSubmitError() {
-    setSubmitErrorMessage('');
-  }*/
   
+  const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      handleSignInClick();
+      history.replace({state: null});
+    }
+  },[location, history]);
+
   function handleRegister({ email, password, username }) {
     setIsInputDisabled(true);
-    setsubmitErrorMessage('');
+    setSubmitErrorMessage('');
     mainApiAuthInstance.register(email, password, username)
       .then((res) => {
         if (res) {
@@ -61,10 +69,7 @@ function App() {
         }
       })
       .catch((err) => {
-        /*if (err.validKey && err.validKey.includes('name')) {
-          return setRegisterSubmitErrorMessage(err.message.replace(/:.*\//, ' such as "Damien" or "Susie".'));
-        }*/
-        setsubmitErrorMessage(err.message);
+        setSubmitErrorMessage(err.message);
       })
       .finally(() => {
         setIsInputDisabled(false);
@@ -72,9 +77,9 @@ function App() {
   }
 
   function handleLogin({ email, password }) {
-    //button preloader
     setIsInputDisabled(true);
-    setsubmitErrorMessage('');
+    setSubmitErrorMessage('');
+
     mainApiAuthInstance.authorize(email, password)
       .then((res) => setToken(localStorage.getItem('token')))
       .then((res) => {
@@ -82,16 +87,14 @@ function App() {
         closeAllPopups();
       })
       .catch((err) => {
-        setsubmitErrorMessage(err.message);
-        //console.log(err.message);
+        setSubmitErrorMessage(err.message);
       })
       .finally(() => {
-        //buttonpreloader
         setIsInputDisabled(false);
       });
   }
 
-  const checkToken = useCallback(() => {//Promise all
+  const checkToken = useCallback(() => {
     if (token) {
       createMainApiInstance(token).getUserAccountInfo()
         .then((res) => {
@@ -126,6 +129,7 @@ function App() {
     setSavedCards([]);
     setNewsCards([]);
     setIsKeywordSubmitted(false);
+    history.push('/');
   }
 
   function handleRenderHomePage(boolean) {
@@ -136,16 +140,23 @@ function App() {
     setIsHeaderExpanded(!isHeaderExpanded);
   }
 
+  function handleListCards(num) {
+    setCounter(num);
+  }
+
+  function handleExpandCardList(bool) {
+    setIsExpanded(bool)
+  }
+
   function handleSignInClick() {
-    setsubmitErrorMessage('');
+    setSubmitErrorMessage('');
     setIsInfoTooltipOpen(false);
     setIsRegisterPopupOpen(false);
     setIsLoginPopupOpen(true);
-    setIsUnauthRegisterPopupOpen(false);
   }
 
   function handleSignUpClick() {
-    setsubmitErrorMessage('');
+    setSubmitErrorMessage('');
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(true);
   }
@@ -154,24 +165,19 @@ function App() {
     setIsLoginPopupOpen(false);
     setIsRegisterPopupOpen(false);
     setIsInfoTooltipOpen(false);
-    setsubmitErrorMessage('');
-    /*setRegisterSubmitErrorMessage('');*/
-    setIsUnauthRegisterPopupOpen(false);
+    setSubmitErrorMessage('');
   }
   
   function handleGetSearchedArticles({ keyword }) {
+    setCounter(3);
+    setIsExpanded(false);
+    setIsInputDisabled(true);
     setIsKeywordSubmitted(true);
     setIsPreloaderVisible(true);
     setKeyword(keyword);
+
     newsApiInstance.getSearchedArticles(keyword)
       .then((articleData) => {
-        /*setNewsCards(articleData.articles.filter((searchedArticle) => {
-          return savedCards.some((savedArticle) => savedArticle.link !== searchedArticle.url);
-        }));*/
-        /*savedCards.forEach((card) => {
-          selectedCards.push(articleData.articles.filter((article) => card.link === article.url));
-         
-        });*/
         setSelectedCards(articleData.articles.filter((article) => {
           return savedCards.some((card) => card.link === article.url)
         }));
@@ -180,19 +186,21 @@ function App() {
       })
       .catch((err) => {
         setSearchError(true);
-        console.log(err)})
-      .finally(() => setIsPreloaderVisible(false));
+      })
+      .finally(() => {
+        setIsInputDisabled(false);
+        setIsPreloaderVisible(false)
+      });
   }
 
   function handleChangeArticleSavedStatus(article) {
     if (!loggedIn) {
-      //setIsRegisterPopupOpen(true);
-      setIsUnauthRegisterPopupOpen(true);
+      setIsRegisterPopupOpen(true);
     } else {
-        let isSaved; //outside
+        let isSaved;
         let savedArticle;
 
-        if (savedCards.length !== 0) { //for only getsaved articles
+        if (savedCards.length !== 0) {
           createMainApiInstance(token).getSavedArticles()
             .then((savedArticles) => {
               savedArticle = savedArticles.data.find((savedArticle) => {
@@ -212,19 +220,18 @@ function App() {
                   setSavedCards(savedCards.filter((savedCard) => savedCard.link !== savedArticle.link));
                 }
               })
-              .catch((err) => console.log(err));
+              .catch((err) => console.log(err.message));
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err.message));
           
         } else {
-          //createMainApiInstance(token).getSavedArticles()
           isSaved = false
           createMainApiInstance(token).changeArticleSavedStatus(keyword, article, isSaved)
             .then((res) => {
               setSavedCards([...savedCards, res.data]);
               setSelectedCards([...selectedCards, article]);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err.message));
         }
     }
   }
@@ -237,83 +244,16 @@ function App() {
         ));
         setSelectedCards(selectedCards.filter((selectedArticle) => selectedArticle.url !== article.link));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err.message));
   }
-  /*function handleSaveArticle(article) {
-    let isSaved;
-    if (!loggedIn) {
-      setIsRegisterPopupOpen(true);
-      setIsUnauthRegisterPopupOpen(true);
-    } else {
-      if (savedCards.length === 0){
-       
-          isSaved = false;
-          createMainApiInstance(token).changeArticleSavedStatus(keyword, article, isSaved)
-            .then((card) => {
-            setIsArticleSaved(true);
-          setSavedCards([...savedCards, card]);
-        })
-          .catch((err) => console.log(err));
-      
-      } else {
-        createMainApiInstance(token).getSavedArticles()
-          .then((savedArticles) => {
-          const deletedArticle = savedArticles.data.filter((savedArticle) => {
-            return savedArticle.link === article.url;
-          });
-          return deletedArticle;
-        .then((savedArticles) => {
-          if (savedArticles) {
-            isSaved = savedArticles.some((savedArticle) => article.url === savedArticle.link)
-            //if issaved or not
-            createMainApiInstance(token).changeArticleSavedStatus(keyword, article, isSaved)
-            .then((article) => {
-              setIsArticleSaved(false);
-              //setSavedCards(savedArticles.filter((savedArticle) => saved));
-            })
-              .catch((err) => console.log(err));
-          }
-        })
-          .catch((err) => console.log(err))
-      }
-      ;
-
-      
-      //setIsArticleSaved(true);
-    }
-  }*/
-/*function handleSaveArticle(article) {
-    if (!loggedIn) {
-      setIsRegisterPopupOpen(true);
-      setIsUnauthRegisterPopupOpen(true);
-    } else {
-      let isSaved;
-
-
-      if (savedCards.length === 0) {
-        isSaved = false;
-        createMainApiInstance(token).changeArticleSavedStatus(keyword, article, isSaved)
-          .then((savedArticle) => {
-            setSavedCards([...savedCards, savedArticle.data]);
-          });
-      } else {
-        //createMainApiInstance(token).getSavedArticles()
-        isSaved = true
-        createMainApiInstance(token).changeArticleSavedStatus(keyword, article, isSaved)
-          .then((res) => {
-            console.log(res.message)}
-      
-          );
-      }
-    }
-  }*/
+  
   useEffect(() => {
     setIsHeaderExpanded(false);
   }, [isHomeRendered, loggedIn, isLoginPopupOpen]);
 
   useEffect(() => {
     setSavedCardsCount(savedCards.length);
-    setSavedKeywords(createKeywordsObjAndSort(savedCards));
+    setSavedKeywords(createSortedKeywordsObj(savedCards));
   },[savedCards]);
 
   useEffect(() => {
@@ -354,7 +294,7 @@ function App() {
 
   return (
     <div className={`page__container ${isHomeRendered ? 'page__container_with-background':''}
-      ${(isHeaderExpanded||isLoginPopupOpen||isRegisterPopupOpen||isInfoTooltipOpen) && !isUnauthRegisterPopupOpen? 'page__container_noscroll':''}`}>
+      ${(isHeaderExpanded||isLoginPopupOpen||isRegisterPopupOpen||isInfoTooltipOpen) ? 'page__container_noscroll':''}`}>
       <CurrentUserContext.Provider value={currentUser}>
         <Header 
           loggedIn={loggedIn}
@@ -373,18 +313,22 @@ function App() {
               onRenderHome={handleRenderHomePage}
               onSearch={handleGetSearchedArticles}
               onSave={handleChangeArticleSavedStatus}
+              onChangeLocation={handleSignUpClick}
               isPreloaderVisible={isPreloaderVisible}
-              isArticleSaved={isArticleSaved}
               newsCards={newsCards}
               onSubmitKeyword={isKeywordSubmitted}
               searchError={searchError}
               isHomeRendered={isHomeRendered}
               loggedIn={loggedIn}
+              isInputDisabled={isInputDisabled}
               chosenCards={selectedCards}
-            >
-            </Main>
+              counter={counter}
+              onListCards={handleListCards}
+              isExpanded={isExpanded}
+              onExpandCardList={handleExpandCardList}
+            />
           </Route>
-          <Route path="/saved-news">
+          <ProtectedRoute exact path="/saved-news" token={token}>
             <SavedNews
               savedCards={savedCards}
               savedCardsCount={savedCardsCount}
@@ -392,9 +336,8 @@ function App() {
               isHomeRendered={isHomeRendered}
               onRenderHome={handleRenderHomePage}
               onRemove={handleRemoveSavedArticle}
-            >
-            </SavedNews>
-          </Route>
+            />
+          </ProtectedRoute>
           <Route path="*">
             <Redirect to="/"/>
           </Route>
@@ -410,7 +353,6 @@ function App() {
         />
         <RegisterPopup
           isOpen={isRegisterPopupOpen}
-          isOpenUnauth={isUnauthRegisterPopupOpen}
           onClose={closeAllPopups}
           onRegister={handleRegister}
           submitErrorMessage={submitErrorMessage}
