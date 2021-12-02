@@ -1,12 +1,18 @@
 # news-explorer-frontend
 
-* The frontend code and the user interface logic with React.js for the News Explorer project
+:small_blue_diamond: The frontend code and the user interface logic with React.js for the News Explorer project
 
-# Getting Started with Create React App
+:small_blue_diamond: The frontend is compatible with the backend code in the news-explorer-backend repository.
+
+:sparkle: The News Explorer app can be accessed via this [link](https://explorernewsapp.students.nomoreparties.site) :mag:
+
+____
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### Available Scripts
 
 In the project directory, you can run:
 
@@ -43,7 +49,7 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
